@@ -4,14 +4,25 @@
 /* ********** Bootstrap Styles ********** */
 
 /* ********** My Styles ********** */
+.active {
+  display: grid;
+  place-items: center;
+  background-color: var(--third-color);
+  border-radius: .6rem;
+  width: 3rem;
+  height: 3rem;
+}
+
 .bg-first-color{
   background-color: var(--first-color);
 }
 
 .icon{
-  font-size: 2.5rem;
+  font-size: 2rem;
   color: var(--bs-white);
+  transition: opacity .3s ease-in-out;
 }
+
 
 .icon:hover{
   color: var(--bs-white);
@@ -21,9 +32,13 @@
   color: var(--gray-light-color);
 }
 
+.logo{
+  width: 5rem;
+}
 
-.left-7{
-  left: 7rem;
+
+.w-12_5 {
+  width: 100% !important;
 }
 
 
@@ -39,29 +54,41 @@ No media query for `xs` since this is the default in Bootstrap */
 
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
+  .active {
+    width: 4rem;
+    height: 4rem;
+  }
+
   .curve {
     border-radius: 3rem / 20rem;
   }
+
+  .icon{
+    font-size: 2.5rem;
+  }
   
   .icon:hover {
-    color: var(--gray-light-color);
+    opacity: .7;
   }
 
-  .min-vh-lg-100{
+  .left-7 {
+    left: 6rem;
+  }
+
+  .logo {
+    width: auto;
+  }
+
+  .min-vh-md-100{
     min-height: 100vh;
   }
-
-  .position-lg-static{
-    position: static;
-  }
-
 
   .w-7 {
     width: 7rem;
   }
   
   .w-12_5 {
-    width: 12.5rem;
+    width: 10rem !important;
   }
 }
 

@@ -1,27 +1,40 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
+import { NavLink } from "react-router-dom";
 import logo from "../assets/logo.png";
 
 export const Navegacion = () => {
   return (
-    <header className="w-12_5 bg-first-color position-fixed position-lg-static bottom-0">
+    <header className="w-12_5 bg-first-color">
       <div className="curve d-none d-md-block position-absolute w-12_5 min-vh-100 bg-white left-7"></div>
 
-      <div className="d-flex flex-row flex-md-column  align-items-md-center min-vh-lg-100 w-7">
-        <img className="img-fluid py-4" src={logo} alt="Logo" />
+      <div
+        className="
+          d-flex flex-row flex-md-column justify-content-between justify-content-md-start
+          align-items-center align-items-md-start min-vh-md-100 ps-2 pe-3 w-7
+        "
+      >
+        <img className="logo img-fluid py-md-4 pt-3" src={logo} alt="Logo" />
 
-        <nav className="d-md-flex flex-column gap-4">
-          <a className="icon" href="#" title="Covid mundialmente">
+        <nav className="d-flex flex-md-column align-items-center gap-4 ps-2">
+          <NavLink className="icon" to="/" title="Covid mundialmente">
             <i className="bi bi-virus2"></i>
-          </a>
-          <a className="icon" href="#" title="Covid por continente">
+          </NavLink>
+
+          <NavLink
+            className="icon"
+            to="/casos-continente"
+            title="Covid por continente"
+          >
             <i className="bi bi-globe-americas"></i>
-          </a>
-          <a className="icon" href="#" title="Covid por pais">
+          </NavLink>
+
+          <NavLink className="icon" to="/casos-pais" title="Covid por pais">
             <i className="bi bi-flag-fill"></i>
-          </a>
-          <a className="icon" href="#" title="Vacunas realizadas">
+          </NavLink>
+
+          <NavLink className="icon" to="/vacunas" title="Vacunas realizadas">
             <i className="bi bi-clipboard2-pulse-fill"></i>
-          </a>
+          </NavLink>
         </nav>
       </div>
     </header>

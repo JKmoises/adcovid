@@ -23,6 +23,10 @@ body {
   --bs-body-font-family: 'Roboto Condensed', sans-serif;
 }
 
+main{
+  z-index: 1;
+}
+
 
 
 
