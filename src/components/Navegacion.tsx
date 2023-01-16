@@ -3,10 +3,10 @@ import logo from "../assets/logo.png";
 
 export const Navegacion = () => {
   return (
-    <header className="w-12_5 bg-first-color">
+    <header className="w-12_5 bg-first-color position-fixed position-lg-static bottom-0">
       <div className="curve d-none d-md-block position-absolute w-12_5 min-vh-100 bg-white left-7"></div>
 
-      <div className="d-md-flex flex-column align-items-md-center min-vh-lg-100 w-7">
+      <div className="d-flex flex-row flex-md-column  align-items-md-center min-vh-lg-100 w-7">
         <img className="img-fluid py-4" src={logo} alt="Logo" />
 
         <nav className="d-md-flex flex-column gap-4">

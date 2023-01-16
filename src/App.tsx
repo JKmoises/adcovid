@@ -4,7 +4,18 @@ import { Navegacion } from './components/Navegacion';
 function App() {
   return (
     <div className="App">
-      <Navegacion/>
+      <Navegacion />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
     </div>
   );
 }

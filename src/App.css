@@ -51,6 +51,11 @@ No media query for `xs` since this is the default in Bootstrap */
     min-height: 100vh;
   }
 
+  .position-lg-static{
+    position: static;
+  }
+
+
   .w-7 {
     width: 7rem;
   }
