@@ -14,7 +14,11 @@
 }
 
 .bg-first-color{
-  background-color: var(--first-color);
+  background-color: var(--first-color) !important;
+}
+
+.bg-third-color{
+  background-color: var(--third-color) !important;
 }
 
 .icon{
@@ -36,8 +40,24 @@
   width: 5rem;
 }
 
+.text-color{
+  color: var(--text-color) !important;
+}
 
-.w-12_5 {
+.text-first-color {
+  color: var(--first-color) !important;
+}
+
+.text-gray-dark-color{
+  color: var(--gray-dark-color) !important;
+}
+
+.text-second-color{
+  color: var(--second-color) !important;
+}
+
+
+.w-11 {
   width: 100% !important;
 }
 
@@ -86,9 +106,13 @@ No media query for `xs` since this is the default in Bootstrap */
   .w-7 {
     width: 7rem;
   }
-  
-  .w-12_5 {
+
+  .w-10 {
     width: 10rem !important;
+  }
+  
+  .w-11 {
+    width: 11rem !important;
   }
 }
 

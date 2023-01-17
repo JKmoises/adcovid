@@ -1,9 +1,17 @@
-import React from 'react'
+import { CardCovid } from '../components/CardCovid';
 
 export const Globales = () => {
   return (
-    <main className="w-100 ms-2 me-4">
-      <h1>Globales</h1>
+    <main className="container-md">
+      <h1 className="text-center my-4 text-color">
+        CASOS GLOBALES DE COVID-19
+      </h1>
+
+      <div className="row gap-2">
+        <CardCovid/>
+        <CardCovid/>
+        
+      </div>
     </main>
   );
 }
