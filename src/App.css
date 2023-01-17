@@ -2,6 +2,13 @@
   position: relative;
 }
 /* ********** Bootstrap Styles ********** */
+.progress{
+  --bs-progress-bg: var(--gray-light-color) !important;
+  --bs-progress-bar-bg: var(--third-color) !important;
+  height: .6rem !important;
+}
+
+
 
 /* ********** My Styles ********** */
 .active {
@@ -17,9 +24,18 @@
   background-color: var(--first-color) !important;
 }
 
+.bg-gradient-green{
+  background: linear-gradient(180deg, #145A32 0%, #0E6655 100%);
+}
+
 .bg-third-color{
   background-color: var(--third-color) !important;
 }
+
+.br-card-icon{
+  border-radius: 20% 50% / 40% 10%;
+}
+
 
 .icon{
   font-size: 2rem;
@@ -34,6 +50,12 @@
 
 .icon:active {
   color: var(--gray-light-color);
+}
+
+.icon-covid{
+  width: 4rem;
+  top: -1rem;
+  right: -2rem;
 }
 
 .logo{
@@ -56,15 +78,13 @@
   color: var(--second-color) !important;
 }
 
+.top--1{
+  top: 0;
+}
 
 .w-11 {
   width: 100% !important;
 }
-
-
-
-
-
 
 
 /* X-Small devices (portrait phones, less than 576px)
@@ -101,6 +121,15 @@ No media query for `xs` since this is the default in Bootstrap */
 
   .min-vh-md-100{
     min-height: 100vh;
+  }
+
+  .ms-10 {
+    margin-left: 10rem;
+  }
+
+  .position-md-fixed {
+    position: fixed !important;
+    top: 0;
   }
 
   .w-7 {

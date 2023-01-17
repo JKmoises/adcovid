@@ -1,29 +1,35 @@
 import { Card } from "react-bootstrap";
 
-export const CardCovid = () => {
+type AppProps = {
+  children?: React.ReactNode;
+  cardTitle: string;
+  bodyText: string;
+  footerText: string;
+};
+
+export const CardCovid = ({ children, cardTitle, bodyText, footerText }: AppProps) => {
   return (
-    <Card className="shadow border-0 p-0 w-100 col">
+    <Card className="shadow border-0 p-0">
       <Card.Header className="bg-third-color border-0">
         <Card.Title className="text-center fw-bold text-white m-0">
-          Casos covid-19 el día de ayer
+          {cardTitle}
         </Card.Title>
       </Card.Header>
 
-      <Card.Body className="d-flex justify-content-between pb-0">
-        <Card.Text className="d-flex flex-column align-items-center text-gray-dark-color fw-bold">
-          <span className="display-4 text-first-color">+11%</span>
-          (A comparación de ayer)
+      <Card.Body className="d-flex flex-column flex-lg-row justify-content-between align-items-center">
+        <Card.Text className="d-flex flex-column align-items-center text-gray-dark-color fw-bold m-0">
+          <span className="display-5 text-first-color">+11%</span>
+          <small>{bodyText}</small>
         </Card.Text>
 
-        <section>
-          <Card.Text className="fs-5">casos el día de ayer</Card.Text>
-        </section>
+        <section>{children}</section>
       </Card.Body>
 
-      <Card.Footer className="bg-white border-0 text-gray-dark-color">
-        <Card.Text>
-          A comparación de ayer los casos aumentaron en un{" "}
-          <span className="text-second-color">11%</span>
+      <Card.Footer className="bg-white border-0">
+        <Card.Text className="text-center text-lg-start text-gray-dark-color">
+          <small>
+            {footerText} <span className="text-second-color">11%</span>
+          </small>
         </Card.Text>
       </Card.Footer>
     </Card>

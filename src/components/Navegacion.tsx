@@ -4,7 +4,7 @@ import logo from "../assets/logo.png";
 
 export const Navegacion = () => {
   return (
-    <header className="w-10 bg-first-color">
+    <header className="position-md-fixed w-10 bg-first-color">
       <div className="curve d-none d-md-block position-absolute w-11 min-vh-100 bg-white left-7"></div>
 
       <div
