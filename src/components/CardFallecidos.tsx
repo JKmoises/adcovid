@@ -1,7 +1,7 @@
 import { ProgressBar } from 'react-bootstrap';
 import covidIcon from "../assets/covid-virus.png";
 
-export const CardIcon = () => {
+export const CardFallecidos = () => {
   return (
     <section
       className="position-relative d-flex flex-column align-items-center justify-content-center gap-2
@@ -15,7 +15,9 @@ export const CardIcon = () => {
       <h4 className="fw-bold text-center">Fallecidos de covid-19</h4>
       <span className="display-5 fw-bold">6.699.947</span>
       <ProgressBar className="w-100" animated now={85} />
-      <p className="fw-bold">86% del total de casos han fallecido</p>
+      <p className="text-center text-md-start fw-bold">
+        86% del total de casos han fallecido
+      </p>
     </section>
   );
 }

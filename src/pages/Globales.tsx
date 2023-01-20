@@ -1,15 +1,12 @@
 import { CardCovid } from "../components/CardCovid";
 import { Row,Col } from "react-bootstrap";
-import { CardIcon } from '../components/CardIcon';
+import { CardFallecidos } from "../components/CardFallecidos";
+import { CardInfectados } from "../components/CardInfectados";
 
 
 export const Globales = () => {
   return (
-    <main className="d-flex flex-column align-items-center container-fluid ps-lg-0">
-      <h1 className="text-center my-3 text-color">
-        CASOS GLOBALES DE COVID-19
-      </h1>
-
+    <>
       <Row className="justify-content-center align-items-center gap-3 gap-xl-2 w-100">
         <Col lg className="p-0">
           <CardCovid
@@ -28,9 +25,19 @@ export const Globales = () => {
         </Col>
 
         <Col lg className="p-0 flex-50">
-          <CardIcon />
+          <CardFallecidos />
         </Col>
       </Row>
-    </main>
+
+      <Row className="justify-content-center align-items-center gap-3 gap-xl-2 w-100 mt-3 mt-lg-2">
+        <Col lg={5} className="p-0">
+          <CardInfectados/>
+        </Col>
+
+        <Col lg className="p-0"></Col>
+
+        <Col lg className="p-0 flex-50"></Col>
+      </Row>
+    </>
   );
 };

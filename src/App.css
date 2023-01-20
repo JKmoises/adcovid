@@ -8,6 +8,10 @@
   height: .6rem !important;
 }
 
+.progress-second-color{
+  --bs-progress-bar-bg: var(--second-color) !important;
+}
+
 
 
 /* ********** My Styles ********** */
@@ -28,6 +32,10 @@
   background: linear-gradient(180deg, #145A32 0%, #0E6655 100%);
 }
 
+.bg-second-color{
+  background-color: var(--second-color) !important;
+}
+
 .bg-third-color{
   background-color: var(--third-color) !important;
 }
@@ -37,7 +45,7 @@
 }
 
 .flex-50{
-  flex: 0 0 50%;
+  flex: 0 0 100%;
 }
 
 
@@ -86,6 +94,10 @@
   top: 0;
 }
 
+.w-6{
+  width: 7rem !important;
+}
+
 .w-11 {
   width: 100% !important;
 }
@@ -94,7 +106,11 @@
 /* X-Small devices (portrait phones, less than 576px)
 No media query for `xs` since this is the default in Bootstrap */
 /* Small devices (landscape phones, 576px and up) */
-@media (min-width: 576px) {}
+@media (min-width: 576px) {
+  .flex-50 {
+    flex: 0 0 50% !important;
+  }
+}
 
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
@@ -152,6 +168,7 @@ No media query for `xs` since this is the default in Bootstrap */
   .w-11 {
     width: 11rem !important;
   }
+
 }
 
 /* Large devices (desktops, 992px and up) */
@@ -173,7 +190,7 @@ No media query for `xs` since this is the default in Bootstrap */
   
 }
 
-@media (min-width: 1267px) {
+@media (min-width: 1279px) {
   .flex-50 {
     flex: 1 0 0 !important;
   }

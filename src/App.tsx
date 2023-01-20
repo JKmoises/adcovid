@@ -12,15 +12,17 @@ function App() {
     <div className="d-md-flex min-vh-100">
       <Navegacion />
 
-      <Routes>
-        <Route path="/" element={<Globales />} />
+      <main className="d-flex flex-column align-items-center container-fluid py-4">
+        <Routes>
+          <Route path="/" element={<Globales />} />
 
-        <Route path="/casos-continente" element={<Continentes />} />
+          <Route path="/casos-continente" element={<Continentes />} />
 
-        <Route path="/casos-pais" element={<Pais />} />
+          <Route path="/casos-pais" element={<Pais />} />
 
-        <Route path="/vacunas" element={<Vacunas />} />
-      </Routes>
+          <Route path="/vacunas" element={<Vacunas />} />
+        </Routes>
+      </main>
     </div>
   );
 }

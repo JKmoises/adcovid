@@ -16,6 +16,7 @@ import {
   Title,
   Tooltip,
   Legend,
+  Filler
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 
@@ -26,10 +27,12 @@ ChartJS.register(
   LineElement,
   Title,
   Tooltip,
-  Legend
+  Legend,
+  Filler
 );
 
 const options = {
+  fill: true,
   responsive: true,
   plugins: {
     legend: {
@@ -43,7 +46,7 @@ const options = {
   },
 };
 
-const labels = ["Casos", "Muertes", "Recuperados"];
+const labels = ["Casos", "Muertes", "Sanados"];
 
 const data = {
   labels,
@@ -51,7 +54,8 @@ const data = {
     {
       data: labels.map((label) => label.length),
       borderColor: "#0E6655",
-      backgroundColor: "#73C6B6",
+      backgroundColor: "#73C6B670",
+      tension: 0.5
     },
   ],
 };
