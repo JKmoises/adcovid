@@ -1,5 +1,7 @@
 import { Card, Stack, ProgressBar } from 'react-bootstrap';
 import { Bar } from 'react-chartjs-2';
+import { useContext } from 'react';
+import { CovidContext } from '../context/CovidContext';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -32,32 +34,45 @@ const options = {
     title: {
       display: false,
     },
+  
   },
 };
 
 const labels = ["Casos hoy", "Muertes hoy", "Sanados hoy"];
 
-const data = {
-  labels,
-  datasets: [
-    {
-      data: [76703, 7350, 75285],
-      backgroundColor: ["#145A32", "#0E6655", "#239B56"],
-    },
-  ],
-};
 export const CardInfectados = () => {
+  const { globals } = useContext(CovidContext);
+  const { data } = globals;
+  const { active,cases,critical,deaths,recovered,todayCases,todayDeaths,todayRecovered} = data ?? {};
+  
+
+  const dataChart = {
+    labels,
+    datasets: [
+      {
+        data: [todayCases, todayDeaths, todayRecovered],
+        backgroundColor: ["#145A32", "#0E6655", "#239B56"],
+      },
+    ],
+  };
+
+  const activePercentage: number = (active*100)/cases;
+  const criticalPercentage: number = (critical*100)/cases;
+  const recoveredPercentage: number = (recovered*100)/cases;
+
   return (
     <Card className="shadow-lg">
       <Card.Header className="text-center border-0 bg-transparent">
         <h3 className="text-uppercase fw-light text-gray-dark-color">
           Total Infectados
         </h3>
-        <Card.Text className="h1 text-color fw-bolder">666.574.231</Card.Text>
+        <Card.Text className="h1 text-color fw-bolder">
+          {deaths?.toLocaleString()}
+        </Card.Text>
       </Card.Header>
 
       <Card.Body className="pt-0">
-        <Stack className="gap-3">
+        <Stack className="gap-3 pb-3">
           <Stack className="flex-row align-items-center gap-3">
             <div className="display-5 text-color">
               <i className="bi bi-activity"></i>
@@ -69,9 +84,11 @@ export const CardInfectados = () => {
             <ProgressBar
               className="progress-second-color w-75"
               animated
-              now={13}
+              now={activePercentage}
             />
-            <Card.Text className="fw-bold text-first-color">0.3%</Card.Text>
+            <Card.Text className="fw-bold text-first-color">
+              {activePercentage.toFixed(2)}%
+            </Card.Text>
           </Stack>
 
           <Stack className="flex-row align-items-center justify-content-between gap-3">
@@ -85,9 +102,11 @@ export const CardInfectados = () => {
             <ProgressBar
               className="progress-second-color w-75"
               animated
-              now={6}
+              now={criticalPercentage}
             />
-            <Card.Text className="fw-bold text-first-color">0.06%</Card.Text>
+            <Card.Text className="fw-bold text-first-color">
+              {criticalPercentage.toFixed(2)}%
+            </Card.Text>
           </Stack>
 
           <Stack className="flex-row align-items-center justify-content-between gap-3">
@@ -101,13 +120,13 @@ export const CardInfectados = () => {
             <ProgressBar
               className="progress-second-color w-75"
               animated
-              now={95.7}
+              now={recoveredPercentage}
             />
-            <Card.Text className="fw-bold text-first-color">95.7%</Card.Text>
+            <Card.Text className="fw-bold text-first-color">{recoveredPercentage.toFixed(1)}%</Card.Text>
           </Stack>
         </Stack>
 
-        <Bar data={data} options={options} />
+        <Bar data={dataChart} options={options} />
       </Card.Body>
     </Card>
   );

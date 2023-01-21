@@ -5,6 +5,7 @@ import { CardInfectados } from "../components/CardInfectados";
 
 
 export const Globales = () => {
+  
   return (
     <>
       <Row className="justify-content-center align-items-center gap-3 gap-xl-2 w-100">

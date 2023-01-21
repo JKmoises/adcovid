@@ -1,14 +1,12 @@
 /* eslint-disable no-throw-literal */
 import { useState, useEffect } from "react";
+import { FetchData, ErrorData } from '../interfaces/interfaces';
 
-type ErrorState = {
-  err: boolean;
-}
 
 export const useFetch = (url: string) => {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState<any>(null);
   const [isPending, setIsPending] = useState(true);
-  const [error, setError] = useState<ErrorState|null>(null);
+  const [error, setError] = useState<ErrorData | null>(null);
 
   useEffect(() => {
     const getData = async (url: string) => {
@@ -25,13 +23,13 @@ export const useFetch = (url: string) => {
 
         let data = await res.json();
 
-        setIsPending(false);
         setData(data);
-        setError({ err: false });
-      } catch (err) {
-        console.log(err);
+        setIsPending(false);
+        setError(null);
+      } catch (error: any) {
+        console.log(error);
+        setError(error);
         setIsPending(true);
-        setError({ err: true });
       }
     };
 

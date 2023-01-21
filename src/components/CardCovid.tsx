@@ -1,12 +1,5 @@
 /* eslint-disable import/first */
 import { Card } from "react-bootstrap";
-
-type AppProps = {
-  cardTitle: string;
-  bodyText: string;
-  footerText: string;
-}
-
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -19,6 +12,13 @@ import {
   Filler
 } from "chart.js";
 import { Line } from "react-chartjs-2";
+
+
+type AppProps = {
+  cardTitle: string;
+  bodyText: string;
+  footerText: string;
+};
 
 ChartJS.register(
   CategoryScale,
@@ -61,7 +61,6 @@ const data = {
 };
 
 export const CardCovid = ({ cardTitle, bodyText, footerText }: AppProps) => {
-
   
   return (
     <Card className="shadow border-0 p-0">
