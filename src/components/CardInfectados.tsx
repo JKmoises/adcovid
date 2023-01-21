@@ -43,7 +43,7 @@ const labels = ["Casos hoy", "Muertes hoy", "Sanados hoy"];
 export const CardInfectados = () => {
   const { globals } = useContext(CovidContext);
   const { data } = globals;
-  const { active,cases,critical,deaths,recovered,todayCases,todayDeaths,todayRecovered} = data ?? {};
+  const { active,cases,critical,recovered,todayCases,todayDeaths,todayRecovered} = data ?? {};
   
 
   const dataChart = {
@@ -67,7 +67,7 @@ export const CardInfectados = () => {
           Total Infectados
         </h3>
         <Card.Text className="h1 text-color fw-bolder">
-          {deaths?.toLocaleString()}
+          {cases?.toLocaleString()}
         </Card.Text>
       </Card.Header>
 

@@ -70,7 +70,7 @@ export const CardCovid = ({ cardTitle, bodyText, footerText }: AppProps) => {
         </Card.Title>
       </Card.Header>
 
-      <Card.Body className="d-flex flex-column flex-sm-row justify-content-around align-items-center pb-0">
+      <Card.Body className="d-flex flex-column flex-xxl-row justify-content-around align-items-center pb-0">
         <Card.Text className="d-flex flex-column align-items-center text-gray-dark-color fw-bold m-0">
           <span className="display-5 text-first-color">+11%</span>
           <small>{bodyText}</small>

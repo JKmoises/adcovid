@@ -13,7 +13,7 @@ function App() {
     <div className="d-md-flex min-vh-100">
       <Navegacion />
 
-      <main className="d-flex flex-column align-items-center container-fluid py-4">
+      <main className="d-flex flex-column align-items-center align-items-lg-stretch py-4 flex-grow-1">
         <CovidProvider>
           <Routes>
             <Route path="/" element={<Globales />} />
