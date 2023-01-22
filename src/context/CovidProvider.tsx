@@ -1,16 +1,16 @@
 import { CovidContext } from './CovidContext';
 import { useFetch } from '../hooks/useFetch';
 import { FetchData, CovidGlobal } from '../interfaces/interfaces';
+import { GLOBALS } from '../helpers/endpoints';
 
 
 interface props {
   children: JSX.Element | JSX.Element[];
 }
 
-let endpointGlobals: string = "https://disease.sh/v3/covid-19/all";
 
 export const CovidProvider = ({ children }: props) => {
-  let globals: FetchData<CovidGlobal> = useFetch(endpointGlobals);
+  let globals: FetchData<CovidGlobal> = useFetch(GLOBALS);
 
   const data = {
     globals,

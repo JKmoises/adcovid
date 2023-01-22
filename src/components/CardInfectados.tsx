@@ -34,7 +34,6 @@ const options = {
     title: {
       display: false,
     },
-  
   },
 };
 

@@ -9,6 +9,7 @@ export const CardFallecidos = () => {
   const { cases,deaths } = data ?? {};
 
   const percentageDeaths = (deaths * 100) / cases;
+  
   return (
     <section
       className="position-relative d-flex flex-column align-items-center justify-content-center gap-2
@@ -23,7 +24,7 @@ export const CardFallecidos = () => {
       <span className="display-5 fw-bold">{deaths?.toLocaleString()}</span>
       <ProgressBar className="w-100" animated now={85} />
       <p className="text-center text-md-start fw-bold">
-        {percentageDeaths.toFixed(1)} % del total de casos han fallecido
+        {percentageDeaths.toFixed(1)}% del total de casos han fallecido
       </p>
     </section>
   );

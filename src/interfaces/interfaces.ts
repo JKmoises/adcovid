@@ -34,4 +34,14 @@ export interface CovidGlobal {
   updated: number;
 }
 
+export interface CovidDate {
+  cases: DateCases;
+  deaths: DateCases;
+  recovered: DateCases;
+}
 
+
+
+interface DateCases {
+  [key: string]: number;
+}

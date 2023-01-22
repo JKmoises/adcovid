@@ -18,6 +18,8 @@ type AppProps = {
   cardTitle: string;
   bodyText: string;
   footerText: string;
+  chartData: number[];
+  increaseCases: number;
 };
 
 ChartJS.register(
@@ -31,37 +33,49 @@ ChartJS.register(
   Filler
 );
 
-const options = {
-  fill: true,
-  responsive: true,
-  plugins: {
-    legend: {
-      display: false,
-    },
-    title: {
-      display: true,
-      text: "Casos el día de ayer",
-      position: "bottom" as const,
-    },
-  },
-};
 
-const labels = ["Casos", "Muertes", "Sanados"];
+const labels = ["Casos", "Muertes","Sanados"];
 
-const data = {
-  labels,
-  datasets: [
-    {
-      data: labels.map((label) => label.length),
-      borderColor: "#0E6655",
-      backgroundColor: "#73C6B670",
-      tension: 0.5
+export const CardCovid = ({
+  cardTitle,
+  bodyText,
+  footerText,
+  chartData,
+  increaseCases,
+}: AppProps) => {
+
+  const options = {
+    fill: true,
+    responsive: true,
+    scales: {
+      y: {
+        display: false,
+      },
     },
-  ],
-};
+    plugins: {
+      legend: {
+        display: false,
+      },
+      title: {
+        display: true,
+        text: cardTitle,
+        position: "bottom" as const,
+      },
+    },
+  };
 
-export const CardCovid = ({ cardTitle, bodyText, footerText }: AppProps) => {
-  
+  const data = {
+    labels,
+    datasets: [
+      {
+        data: chartData,
+        borderColor: "#0E6655",
+        backgroundColor: "#73C6B670",
+        tension: 0.5,
+      },
+    ],
+  };
+
   return (
     <Card className="shadow border-0 p-0">
       <Card.Header className="bg-third-color border-0">
@@ -72,7 +86,9 @@ export const CardCovid = ({ cardTitle, bodyText, footerText }: AppProps) => {
 
       <Card.Body className="d-flex flex-column flex-xxl-row justify-content-around align-items-center pb-0">
         <Card.Text className="d-flex flex-column align-items-center text-gray-dark-color fw-bold m-0">
-          <span className="display-5 text-first-color">+11%</span>
+          <span className="display-5 text-first-color">
+            +{increaseCases.toFixed(1)}%
+          </span>
           <small>{bodyText}</small>
         </Card.Text>
 
@@ -86,7 +102,10 @@ export const CardCovid = ({ cardTitle, bodyText, footerText }: AppProps) => {
       <Card.Footer className="bg-white border-0">
         <Card.Text className="text-center text-lg-start text-gray-dark-color">
           <small>
-            {footerText} <span className="text-second-color">11%</span>
+            {footerText}{" "}
+            <span className="text-second-color fw-bolder">
+              {increaseCases.toFixed(1)}%
+            </span>
           </small>
         </Card.Text>
       </Card.Footer>
