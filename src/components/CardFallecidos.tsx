@@ -1,15 +1,15 @@
-import { ProgressBar } from 'react-bootstrap';
+import { Placeholder, ProgressBar } from "react-bootstrap";
 import covidIcon from "../assets/covid-virus.png";
-import { useContext } from 'react';
-import { CovidContext } from '../context/CovidContext';
+import { useContext } from "react";
+import { CovidContext } from "../context/CovidContext";
 
 export const CardFallecidos = () => {
   const { globals } = useContext(CovidContext);
   const { data } = globals;
-  const { cases,deaths } = data ?? {};
+  const { cases, deaths } = data ?? {};
 
   const percentageDeaths = (deaths * 100) / cases;
-  
+
   return (
     <section
       className="position-relative d-flex flex-column align-items-center justify-content-center gap-2
@@ -21,11 +21,20 @@ export const CardFallecidos = () => {
         alt="Covid icono"
       />
       <h4 className="fw-bold text-center">Fallecidos de covid-19</h4>
-      <span className="display-5 fw-bold">{deaths?.toLocaleString()}</span>
+
+      {data ? (
+        <span className="display-5 fw-bold">{deaths?.toLocaleString()}</span>
+      ) : (
+        <Placeholder xs={8} size="lg" />
+      )}
       <ProgressBar className="w-100" animated now={85} />
-      <p className="text-center text-md-start fw-bold">
-        {percentageDeaths.toFixed(1)}% del total de casos han fallecido
-      </p>
+      {data ? (
+        <p className="text-center text-md-start fw-bold">
+          {percentageDeaths.toFixed(1)}% del total de casos han fallecido
+        </p>
+      ) : (
+        <Placeholder xs={10} size="xs" />
+      )}
     </section>
   );
-}
+};

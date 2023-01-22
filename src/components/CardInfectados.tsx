@@ -1,7 +1,7 @@
-import { Card, Stack, ProgressBar } from 'react-bootstrap';
-import { Bar } from 'react-chartjs-2';
-import { useContext } from 'react';
-import { CovidContext } from '../context/CovidContext';
+import { Card, Stack, ProgressBar, Placeholder } from "react-bootstrap";
+import { Bar } from "react-chartjs-2";
+import { useContext } from "react";
+import { CovidContext } from "../context/CovidContext";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -20,7 +20,7 @@ ChartJS.register(
   BarElement,
   Title,
   Tooltip,
-  Legend,
+  Legend
 );
 
 const options = {
@@ -42,8 +42,15 @@ const labels = ["Casos hoy", "Muertes hoy", "Sanados hoy"];
 export const CardInfectados = () => {
   const { globals } = useContext(CovidContext);
   const { data } = globals;
-  const { active,cases,critical,recovered,todayCases,todayDeaths,todayRecovered} = data ?? {};
-  
+  const {
+    active,
+    cases,
+    critical,
+    recovered,
+    todayCases,
+    todayDeaths,
+    todayRecovered,
+  } = data ?? {};
 
   const dataChart = {
     labels,
@@ -55,9 +62,9 @@ export const CardInfectados = () => {
     ],
   };
 
-  const activePercentage: number = (active*100)/cases;
-  const criticalPercentage: number = (critical*100)/cases;
-  const recoveredPercentage: number = (recovered*100)/cases;
+  const activePercentage: number = (active * 100) / cases;
+  const criticalPercentage: number = (critical * 100) / cases;
+  const recoveredPercentage: number = (recovered * 100) / cases;
 
   return (
     <Card className="shadow-lg">
@@ -65,9 +72,13 @@ export const CardInfectados = () => {
         <h3 className="text-uppercase fw-light text-gray-dark-color">
           Total Infectados
         </h3>
-        <Card.Text className="h1 text-color fw-bolder">
-          {cases?.toLocaleString()}
-        </Card.Text>
+        {data ? (
+          <Card.Text className="h1 text-color fw-bolder">
+            {cases?.toLocaleString()}
+          </Card.Text>
+        ) : (
+          <Placeholder xs={8} size="lg" />
+        )}
       </Card.Header>
 
       <Card.Body className="pt-0">
@@ -80,14 +91,20 @@ export const CardInfectados = () => {
             <Card.Text className="w-6 m-0 fs-5 text-gray-dark-color">
               Activos
             </Card.Text>
+
             <ProgressBar
               className="progress-second-color w-75"
               animated
               now={activePercentage}
             />
-            <Card.Text className="fw-bold text-first-color">
-              {activePercentage.toFixed(2)}%
-            </Card.Text>
+
+            {data ? (
+              <Card.Text className="fw-bold text-first-color">
+                {activePercentage.toFixed(2)}%
+              </Card.Text>
+            ) : (
+              <Placeholder xs={1} />
+            )}
           </Stack>
 
           <Stack className="flex-row align-items-center justify-content-between gap-3">
@@ -98,14 +115,20 @@ export const CardInfectados = () => {
             <Card.Text className="w-6 m-0 fs-5 text-gray-dark-color">
               Críticos
             </Card.Text>
+
             <ProgressBar
               className="progress-second-color w-75"
               animated
               now={criticalPercentage}
             />
-            <Card.Text className="fw-bold text-first-color">
-              {criticalPercentage.toFixed(2)}%
-            </Card.Text>
+
+            {data ? (
+              <Card.Text className="fw-bold text-first-color">
+                {criticalPercentage.toFixed(2)}%
+              </Card.Text>
+            ) : (
+              <Placeholder xs={1} />
+            )}
           </Stack>
 
           <Stack className="flex-row align-items-center justify-content-between gap-3">
@@ -116,17 +139,34 @@ export const CardInfectados = () => {
             <Card.Text className="w-6 m-0 fs-5 text-gray-dark-color">
               Sanados
             </Card.Text>
+
             <ProgressBar
               className="progress-second-color w-75"
               animated
               now={recoveredPercentage}
             />
-            <Card.Text className="fw-bold text-first-color">{recoveredPercentage.toFixed(1)}%</Card.Text>
+
+            {data ? (
+              <Card.Text className="fw-bold text-first-color">
+                {recoveredPercentage.toFixed(1)}%
+              </Card.Text>
+            ) : (
+              <Placeholder xs={1} />
+            )}
           </Stack>
         </Stack>
 
-        <Bar data={dataChart} options={options} />
+        {data ? (
+          <Bar data={dataChart} options={options} />
+        ) : (
+          <>
+            <Placeholder xs={12} size="lg" />
+            <Placeholder xs={12} size="lg" />
+            <Placeholder xs={12} size="lg" />
+            <Placeholder xs={12} size="lg" />
+          </>
+        )}
       </Card.Body>
     </Card>
   );
-}
+};
