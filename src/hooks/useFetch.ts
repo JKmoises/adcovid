@@ -1,9 +1,10 @@
 /* eslint-disable no-throw-literal */
 import { useState, useEffect } from "react";
-import { FetchData, ErrorData } from '../interfaces/interfaces';
+import { ErrorData } from '../interfaces/interfaces';
 
 
-export const useFetch = (url: string) => {
+
+export const useFetch = (url: string, param = '') => {
   const [data, setData] = useState<any>(null);
   const [isPending, setIsPending] = useState(true);
   const [error, setError] = useState<ErrorData | null>(null);
@@ -11,7 +12,8 @@ export const useFetch = (url: string) => {
   useEffect(() => {
     const getData = async (url: string) => {
       try {
-        let res = await fetch(url);
+        const fetchUrl = `${url}/${param}`;
+        let res = await fetch(fetchUrl);
 
         if (!res.ok) {
           throw {
@@ -34,7 +36,7 @@ export const useFetch = (url: string) => {
     };
 
     getData(url);
-  }, [url]);
+  }, [url,param]);
 
   return { data, isPending, error };
 };

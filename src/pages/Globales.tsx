@@ -4,8 +4,8 @@ import { CardFallecidos } from "../components/CardFallecidos";
 import { CardInfectados } from "../components/CardInfectados";
 import { useFetch } from "../hooks/useFetch";
 import { yesterdayDate, dateMonthAgo } from "../helpers/formattedDates";
-import { MONTH_AGO, YESTERDAY } from "../helpers/endpoints";
-import { CovidDate, FetchData } from "../interfaces/interfaces";
+import { CHILE_COVID, MONTH_AGO_COVID, YESTERDAY_COVID } from "../helpers/endpoints";
+import { CovidDate, FetchData, CovidCountry } from '../interfaces/interfaces';
 import { useContext } from "react";
 import { CovidContext } from "../context/CovidContext";
 import { CardPlaceholder } from "../components/CardPlaceholder";
@@ -19,8 +19,10 @@ const MONTH_AGO_DATE: string = dateMonthAgo();
 const TOTAL_COUNTRIES = 244;
 
 export const Globales = () => {
-  const covidYesterday: FetchData<CovidDate> = useFetch(YESTERDAY);
-  const covidMonthAgo: FetchData<CovidDate> = useFetch(MONTH_AGO);
+  const covidYesterday: FetchData<CovidDate> = useFetch(YESTERDAY_COVID);
+  const covidMonthAgo: FetchData<CovidDate> = useFetch(MONTH_AGO_COVID);
+  const covidChile: FetchData<CovidCountry> = useFetch(CHILE_COVID, 'chile');
+  
   const { globals } = useContext(CovidContext);
   const { data } = globals;
   const { cases, affectedCountries } = data ?? {};
@@ -58,10 +60,10 @@ export const Globales = () => {
     ((cases - CASES_MONTH_AGO) * 100) / cases;
 
   //* % de paises afectados
-  const percentageCountriesAffected: number =
-    ((affectedCountries * 100) / TOTAL_COUNTRIES) || 0;
+  const percentageCountriesAffected: number = (affectedCountries * 100) / TOTAL_COUNTRIES || 0;
 
   //* % de datos sobre chile 
+  const percentageCasesChile: number  = (covidChile?.data?.cases * 100) / cases || 0;
 
   return (
     <>
@@ -129,13 +131,17 @@ export const Globales = () => {
             cardTitle="Infectados en chile"
             footerText={
               <small>
-                <span className="text-second-color fw-bolder">5.074.837</span>{" "}
+                <span className="text-second-color fw-bolder">
+                  {covidChile?.data?.cases.toLocaleString()}
+                </span>{" "}
                 casos en chile son el{" "}
-                <span className="text-second-color fw-bolder">27%</span> de
-                infectados en el mundo
+                <span className="text-second-color fw-bolder">
+                  {percentageCasesChile.toFixed(1)}%
+                </span>{" "}
+                de infectados en el mundo
               </small>
             }
-            percentage={0}
+            percentage={percentageCasesChile}
           />
         </Col>
       </Row>

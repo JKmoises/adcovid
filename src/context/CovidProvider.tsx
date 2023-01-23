@@ -1,7 +1,7 @@
 import { CovidContext } from './CovidContext';
 import { useFetch } from '../hooks/useFetch';
 import { FetchData, CovidGlobal } from '../interfaces/interfaces';
-import { GLOBALS } from '../helpers/endpoints';
+import { GLOBALS_COVID } from '../helpers/endpoints';
 
 
 interface props {
@@ -10,7 +10,7 @@ interface props {
 
 
 export const CovidProvider = ({ children }: props) => {
-  let globals: FetchData<CovidGlobal> = useFetch(GLOBALS);
+  let globals: FetchData<CovidGlobal> = useFetch(GLOBALS_COVID);
 
   const data = {
     globals,
