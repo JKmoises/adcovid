@@ -36,7 +36,7 @@ ChartJS.register(
 
 const labels = ["Casos", "Muertes","Sanados"];
 
-export const CardCovid = ({
+export const CardDay = ({
   cardTitle,
   bodyText,
   footerText,

@@ -22,19 +22,13 @@ export const CardFallecidos = () => {
       />
       <h4 className="fw-bold text-center">Fallecidos de covid-19</h4>
 
-      {data ? (
+      {data && (
         <span className="display-5 fw-bold">{deaths?.toLocaleString()}</span>
-      ) : (
-        <Placeholder xs={8} size="lg" />
       )}
       <ProgressBar className="w-100" animated now={85} />
-      {data ? (
-        <p className="text-center text-md-start fw-bold">
-          {percentageDeaths.toFixed(1)}% del total de casos han fallecido
-        </p>
-      ) : (
-        <Placeholder xs={10} size="xs" />
-      )}
+      <p className="text-center text-md-start fw-bold">
+        {data && percentageDeaths.toFixed(1)}% del total de casos han fallecido
+      </p>
     </section>
   );
 };

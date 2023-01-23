@@ -12,6 +12,10 @@
   --bs-progress-bar-bg: var(--second-color) !important;
 }
 
+/* ********** Circular Progress Bar Styles ********** */
+.CircularProgressbar-text {
+  font-weight: 300;
+}
 
 
 /* ********** My Styles ********** */
@@ -46,6 +50,10 @@
 
 .flex-50{
   flex: 0 0 100%;
+}
+
+.h-350{
+  height: 350px !important;
 }
 
 
