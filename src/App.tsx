@@ -2,7 +2,6 @@ import { Route } from 'react-router';
 import { Routes } from 'react-router-dom';
 import './App.css';
 import { Navegacion } from './components/Navegacion';
-import { CovidProvider } from './context/CovidProvider';
 import { Continentes } from './pages/Continentes';
 import { Globales } from './pages/Globales';
 import { Pais } from './pages/Pais';
@@ -14,17 +13,15 @@ function App() {
       <Navegacion />
 
       <main className="d-flex flex-column align-items-center align-items-lg-stretch py-4 flex-grow-1">
-        <CovidProvider>
-          <Routes>
-            <Route path="/" element={<Globales />} />
+        <Routes>
+          <Route path="/" element={<Globales />} />
 
-            <Route path="/casos-continente" element={<Continentes />} />
+          <Route path="/casos-continente" element={<Continentes />} />
 
-            <Route path="/casos-pais" element={<Pais />} />
+          <Route path="/casos-pais" element={<Pais />} />
 
-            <Route path="/vacunas" element={<Vacunas />} />
-          </Routes>
-        </CovidProvider>
+          <Route path="/vacunas" element={<Vacunas />} />
+        </Routes>
       </main>
     </div>
   );

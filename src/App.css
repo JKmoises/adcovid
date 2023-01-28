@@ -48,9 +48,6 @@
   border-radius: 20% 50% / 40% 10%;
 }
 
-.flex-50{
-  flex: 0 0 100%;
-}
 
 .h-350{
   height: 350px !important;
@@ -74,12 +71,17 @@
 
 .icon-covid{
   width: 4rem;
-  top: -.9rem;
-  right: -.5rem;
+  top: -1.8rem;
+  right: -.8rem;
 }
 
 .logo{
   width: 5rem;
+}
+
+.nav-responsive{
+  position: fixed;
+  bottom: 0;
 }
 
 .text-color{
@@ -106,6 +108,10 @@
   width: 7rem !important;
 }
 
+.w-10{
+  width: 100%;
+}
+
 .w-11 {
   width: 100% !important;
 }
@@ -115,9 +121,7 @@
 No media query for `xs` since this is the default in Bootstrap */
 /* Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) {
-  .flex-50 {
-    flex: 0 0 50% !important;
-  }
+  
 }
 
 /* Medium devices (tablets, 768px and up) */
@@ -139,10 +143,6 @@ No media query for `xs` since this is the default in Bootstrap */
     opacity: .7;
   }
 
-  .icon-covid {
-    top: -1.8rem;
-    right: -.8rem;
-  }
 
   .left-7 {
     left: 6rem;
@@ -160,17 +160,19 @@ No media query for `xs` since this is the default in Bootstrap */
     margin-left: 10rem;
   }
 
-  .position-md-fixed {
-    position: fixed !important;
+  .nav-responsive {
+    position: sticky;
     top: 0;
-  }
-
-  .vh-md-100{
     height: 100vh;
   }
 
+
   .w-7 {
     width: 7rem;
+  }
+  
+  .w-10 {
+    width: 10rem;
   }
   
   .w-11 {
@@ -181,28 +183,19 @@ No media query for `xs` since this is the default in Bootstrap */
 
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {
-
-  .w-10 {
-    width: 10rem !important;
+  .icon-covid {
+    right: -1.7rem;
   }
 
-  .flex-50 {
-    flex: 0 0 50% !important;
-  }
-
+  
   
 }
 
 /* X-Large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
-  
+
 }
 
-@media (min-width: 1279px) {
-  .flex-50 {
-    flex: 1 0 0 !important;
-  }
-}
 
 /* XX-Large devices (larger desktops, 1400px and up) */
 @media (min-width: 1400px) {

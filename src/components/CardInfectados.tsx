@@ -1,7 +1,5 @@
 import { Card, Stack, ProgressBar, Placeholder } from "react-bootstrap";
 import { Bar } from "react-chartjs-2";
-import { useContext } from "react";
-import { CovidContext } from "../context/CovidContext";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -12,6 +10,9 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import { useFetch } from "../hooks/useFetch";
+import { GLOBALS_COVID } from '../data/endpoints';
+import { CovidGlobal, FetchData } from '../interfaces/interfaces';
 
 ChartJS.register(
   CategoryScale,
@@ -40,7 +41,7 @@ const options = {
 const labels = ["Casos hoy", "Muertes hoy", "Sanados hoy"];
 
 export const CardInfectados = () => {
-  const { globals } = useContext(CovidContext);
+  const globals: FetchData<CovidGlobal> = useFetch(GLOBALS_COVID);
   const { data } = globals;
   const {
     active,

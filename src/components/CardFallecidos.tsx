@@ -1,10 +1,11 @@
-import { Placeholder, ProgressBar } from "react-bootstrap";
+import { ProgressBar } from "react-bootstrap";
 import covidIcon from "../assets/covid-virus.png";
-import { useContext } from "react";
-import { CovidContext } from "../context/CovidContext";
+import { FetchData, CovidGlobal } from "../interfaces/interfaces";
+import { GLOBALS_COVID } from "../data/endpoints";
+import { useFetch } from "../hooks/useFetch";
 
 export const CardFallecidos = () => {
-  const { globals } = useContext(CovidContext);
+  const globals: FetchData<CovidGlobal> = useFetch(GLOBALS_COVID);
   const { data } = globals;
   const { cases, deaths } = data ?? {};
 

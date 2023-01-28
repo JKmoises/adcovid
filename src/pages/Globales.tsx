@@ -4,10 +4,8 @@ import { CardFallecidos } from "../components/CardFallecidos";
 import { CardInfectados } from "../components/CardInfectados";
 import { useFetch } from "../hooks/useFetch";
 import { yesterdayDate, dateMonthAgo } from "../helpers/formattedDates";
-import { CHILE_COVID, MONTH_AGO_COVID, YESTERDAY_COVID } from "../helpers/endpoints";
-import { CovidDate, FetchData, CovidCountry } from '../interfaces/interfaces';
-import { useContext } from "react";
-import { CovidContext } from "../context/CovidContext";
+import { CHILE_COVID, MONTH_AGO_COVID, YESTERDAY_COVID, GLOBALS_COVID } from '../data/endpoints';
+import { CovidDate, FetchData, CovidCountry, CovidGlobal } from '../interfaces/interfaces';
 import { CardPlaceholder } from "../components/CardPlaceholder";
 import { CardProgressCircular } from "../components/CardProgressCircular";
 
@@ -19,11 +17,11 @@ const MONTH_AGO_DATE: string = dateMonthAgo();
 const TOTAL_COUNTRIES = 244;
 
 export const Globales = () => {
+  let globals: FetchData<CovidGlobal> = useFetch(GLOBALS_COVID);
   const covidYesterday: FetchData<CovidDate> = useFetch(YESTERDAY_COVID);
   const covidMonthAgo: FetchData<CovidDate> = useFetch(MONTH_AGO_COVID);
   const covidChile: FetchData<CovidCountry> = useFetch(CHILE_COVID, 'chile');
   
-  const { globals } = useContext(CovidContext);
   const { data } = globals;
   const { cases, affectedCountries } = data ?? {};
 
@@ -67,8 +65,8 @@ export const Globales = () => {
 
   return (
     <>
-      <Row className="justify-content-center align-items-center gap-3 gap-xl-2 mw-100">
-        <Col lg={4} className="p-lg-0">
+      <Row className="justify-content-center align-items-center gap-5 gap-xl-2 mw-100">
+        <Col lg={5} xl={4} className="p-lg-0">
           {data ? (
             <CardDay
               cardTitle="Casos covid-19 el día de ayer"
@@ -82,7 +80,7 @@ export const Globales = () => {
           )}
         </Col>
 
-        <Col lg={4} className="p-lg-0">
+        <Col lg={5} xl={4} className="p-lg-0">
           {data ? (
             <CardDay
               cardTitle="Casos covid-19 hace 1 mes"
@@ -96,17 +94,17 @@ export const Globales = () => {
           )}
         </Col>
 
-        <Col lg={3} className="p-lg-0 flex-50">
+        <Col sm={8} lg={6} xl={3} className="p-lg-0">
           <CardFallecidos />
         </Col>
       </Row>
 
-      <Row className="justify-content-center gap-3 gap-xl-2 w-100 mt-3 mt-lg-2">
-        <Col lg={4} className="p-lg-0">
+      <Row className="justify-content-center align-items-center align-items-xl-start gap-3 gap-xl-2 w-100 mt-4 mt-xl-2">
+        <Col sm={9} md={7} lg={5} xl={5} className="p-lg-0">
           <CardInfectados />
         </Col>
 
-        <Col lg className="p-lg-0">
+        <Col sm={9} md={5} lg={5} xl={3} className="p-lg-0">
           <CardProgressCircular
             cardTitle="% paises y territorios afectados"
             footerText={
@@ -126,7 +124,7 @@ export const Globales = () => {
           />
         </Col>
 
-        <Col lg className="p-lg-0">
+        <Col sm={9} md={5} lg={5} xl={3} className="p-lg-0">
           <CardProgressCircular
             cardTitle="Infectados en chile"
             footerText={
