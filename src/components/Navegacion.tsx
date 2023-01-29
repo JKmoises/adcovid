@@ -19,7 +19,6 @@ export const Navegacion = () => {
           alt="Logo"
           width={122}
           height={118}
-          loading="lazy"
         />
 
         <nav className="d-flex flex-md-column align-items-center gap-4 ps-xl-2">
