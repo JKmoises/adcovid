@@ -1,5 +1,5 @@
 import { ProgressBar } from "react-bootstrap";
-import covidIcon from "../assets/covid-virus.png";
+import covidIcon from "../assets/covid-virus.webp";
 import { FetchData, CovidGlobal } from "../interfaces/interfaces";
 import { GLOBALS_COVID } from "../data/endpoints";
 import { useFetch } from "../hooks/useFetch";
@@ -20,6 +20,9 @@ export const CardFallecidos = () => {
         className="position-absolute img-fluid icon-covid"
         src={covidIcon}
         alt="Covid icono"
+        width={1565}
+        height={1577}
+        loading="lazy"
       />
       <h4 className="fw-bold text-center">Fallecidos de covid-19</h4>
 
