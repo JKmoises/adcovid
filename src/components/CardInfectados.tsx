@@ -11,7 +11,6 @@ import {
   Legend,
 } from "chart.js";
 import { useFetch } from "../hooks/useFetch";
-import { GLOBALS_COVID } from '../data/endpoints';
 import { CovidGlobal, FetchData } from '../interfaces/interfaces';
 
 ChartJS.register(
@@ -41,7 +40,7 @@ const options = {
 const labels = ["Casos hoy", "Muertes hoy", "Sanados hoy"];
 
 export const CardInfectados = () => {
-  const globals: FetchData<CovidGlobal> = useFetch(GLOBALS_COVID);
+  const globals: FetchData<CovidGlobal> = useFetch(import.meta.env.VITE_GLOBALS_COVID);
   const { data } = globals;
   const {
     active,

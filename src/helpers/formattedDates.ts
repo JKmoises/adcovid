@@ -11,7 +11,7 @@ export function yesterdayDate(): string{
   yesterdayDate.setDate(yesterdayDate.getDate() - 1);
 
   let yesterdayDateFormat = yesterdayDate.toLocaleDateString("en-US", OPTIONS);
-  console.log(removeZeroOfDate(yesterdayDateFormat));
+
   return removeZeroOfDate(yesterdayDateFormat);
 }
 
@@ -20,7 +20,7 @@ export function dateMonthAgo(): string{
   dateMonthAgo.setDate(dateMonthAgo.getDate() - 30);
   
   let dateMonthAgoFormat = dateMonthAgo.toLocaleDateString("en-US", OPTIONS);
-  console.log(removeZeroOfDate(dateMonthAgoFormat));
+  
   return removeZeroOfDate(dateMonthAgoFormat);
 }
 

@@ -4,7 +4,6 @@ import { CardFallecidos } from "../components/CardFallecidos";
 import { CardInfectados } from "../components/CardInfectados";
 import { useFetch } from "../hooks/useFetch";
 import { yesterdayDate, dateMonthAgo } from "../helpers/formattedDates";
-import { CHILE_COVID, MONTH_AGO_COVID, YESTERDAY_COVID, GLOBALS_COVID } from '../data/endpoints';
 import { CovidDate, FetchData, CovidCountry, CovidGlobal } from '../interfaces/interfaces';
 import { CardPlaceholder } from "../components/CardPlaceholder";
 import { CardProgressCircular } from "../components/CardProgressCircular";
@@ -17,10 +16,10 @@ const MONTH_AGO_DATE: string = dateMonthAgo();
 const TOTAL_COUNTRIES = 244;
 
 export const Globales = () => {
-  let globals: FetchData<CovidGlobal> = useFetch(GLOBALS_COVID);
-  const covidYesterday: FetchData<CovidDate> = useFetch(YESTERDAY_COVID);
-  const covidMonthAgo: FetchData<CovidDate> = useFetch(MONTH_AGO_COVID);
-  const covidChile: FetchData<CovidCountry> = useFetch(CHILE_COVID, 'chile');
+  let globals: FetchData<CovidGlobal> = useFetch(import.meta.env.VITE_GLOBALS_COVID);
+  const covidYesterday: FetchData<CovidDate> = useFetch(import.meta.env.VITE_YESTERDAY_COVID);
+  const covidMonthAgo: FetchData<CovidDate> = useFetch(import.meta.env.VITE_MONTH_AGO_COVID);
+  const covidChile: FetchData<CovidCountry> = useFetch(import.meta.env.VITE_CHILE_COVID, 'chile');
   
   const { data } = globals;
   const { cases, affectedCountries } = data ?? {};
