@@ -28,8 +28,7 @@ export const Globales = () => {
   //* Obteniendo datos del día de ayer
   const CASES_YESTERDAY: number = covidYesterday?.data?.cases[YESTERDAY_DATE];
   const DEATHS_YESTERDAY: number = covidYesterday?.data?.deaths[YESTERDAY_DATE];
-  const RECOVERED_YESTERDAY: number =
-    covidYesterday?.data?.recovered[YESTERDAY_DATE];
+  const RECOVERED_YESTERDAY: number = covidYesterday?.data?.recovered[YESTERDAY_DATE];
 
   //* Obteniendo datos de hace un mes
   const CASES_MONTH_AGO: number = covidMonthAgo?.data?.cases[MONTH_AGO_DATE];
@@ -99,7 +98,7 @@ export const Globales = () => {
         </Col>
       </Row>
 
-      <Row className="justify-content-center align-items-center align-items-xl-start gap-3 gap-xl-2 w-100 mt-4 mt-xl-2">
+      <Row className="justify-content-center align-items-center gap-3 gap-xl-2 w-100 mt-4 mt-xl-2">
         <Col sm={9} md={7} lg={5} xl={5} className="p-lg-0">
           <CardInfectados />
         </Col>

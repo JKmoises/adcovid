@@ -20,8 +20,8 @@ export const CardFallecidos = () => {
         className="position-absolute img-fluid icon-covid"
         src={covidIcon}
         alt="Covid icono"
-        width={1565}
-        height={1577}
+        width={200}
+        height={300}
       />
       <h4 className="fw-bold text-center">Fallecidos de covid-19</h4>
 
