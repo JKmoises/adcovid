@@ -11,21 +11,24 @@ export function yesterdayDate(): string{
   yesterdayDate.setDate(yesterdayDate.getDate() - 1);
 
   let yesterdayDateFormat = yesterdayDate.toLocaleDateString("en-US", OPTIONS);
-  
+  console.log(removeZeroOfDate(yesterdayDateFormat));
   return removeZeroOfDate(yesterdayDateFormat);
 }
 
 export function dateMonthAgo(): string{
   let dateMonthAgo = new Date();
   dateMonthAgo.setDate(dateMonthAgo.getDate() - 30);
-
+  
   let dateMonthAgoFormat = dateMonthAgo.toLocaleDateString("en-US", OPTIONS);
-
+  console.log(removeZeroOfDate(dateMonthAgoFormat));
   return removeZeroOfDate(dateMonthAgoFormat);
 }
 
 function removeZeroOfDate(date: string): string{
-  return date.charAt(0) === "0"
-    ? date.slice(1)
-    : date;
+  const dateWithoutZeroOfDay = date.charAt(0) === "0" ? date.slice(1) : date;
+  let zeroOfMonth = dateWithoutZeroOfDay.at(dateWithoutZeroOfDay.indexOf("/") + 1);
+  
+  return zeroOfMonth === '0'
+    ? dateWithoutZeroOfDay.replace(zeroOfMonth, "")
+    : dateWithoutZeroOfDay;
 }
