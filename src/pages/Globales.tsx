@@ -22,6 +22,7 @@ import {
 import { Line } from "react-chartjs-2";
 import { buildStyles, CircularProgressbar } from 'react-circular-progressbar';
 import "react-circular-progressbar/dist/styles.css";
+import { chartData, chartOptions } from '../data/charts_data';
 
 ChartJS.register(
   CategoryScale,
@@ -44,7 +45,7 @@ const progressBarStyles = buildStyles({
 
 const labels = ["Casos", "Muertes","Sanados"];
 
-//* Fecha del día e ayer y hace un mes
+//* Fecha del día de ayer y hace un mes
 const YESTERDAY_DATE: string = yesterdayDate();
 const MONTH_AGO_DATE: string = dateMonthAgo();
 
@@ -100,69 +101,6 @@ export const Globales = () => {
     (covidChile?.data?.cases * 100) / cases || 0
   ).toFixed(1);
   
-  //* Configuración gráficos 
-  const options = {
-    fill: true,
-    responsive: true,
-    scales: {
-      y: {
-        display: false,
-      },
-    },
-    plugins: {
-      legend: {
-        display: false,
-      },
-      title: {
-        display: true,
-        text: "Casos covid-19 el día de ayer",
-        position: "bottom" as const,
-      },
-    },
-  };
-  const options2 = {
-    fill: true,
-    responsive: true,
-    scales: {
-      y: {
-        display: false,
-      },
-    },
-    plugins: {
-      legend: {
-        display: false,
-      },
-      title: {
-        display: true,
-        text: "Casos covid-19 hace 1 mes",
-        position: "bottom" as const,
-      },
-    },
-  };
-
-  const dataChart = {
-    labels,
-    datasets: [
-      {
-        data: dataYesterday,
-        borderColor: "#0E6655",
-        backgroundColor: "#73C6B670",
-        tension: 0.5,
-      },
-    ],
-  };
-
-  const dataChart2 = {
-    labels,
-    datasets: [
-      {
-        data: dataMonthAgo,
-        borderColor: "#0E6655",
-        backgroundColor: "#73C6B670",
-        tension: 0.5,
-      },
-    ],
-  };
 
   return (
     <>
@@ -190,7 +128,10 @@ export const Globales = () => {
                 <small>(Aumento a comparación del día de ayer)</small>
               </Card.Text>
 
-              <Line data={dataChart} options={options} />
+              <Line
+                data={chartData(labels, dataYesterday)}
+                options={chartOptions("Casos el día de ayer")}
+              />
             </CardWithHeader>
           ) : (
             <CardPlaceholder />
@@ -220,7 +161,10 @@ export const Globales = () => {
                 <small>(Aumento a comparación de hace 1 mes)</small>
               </Card.Text>
 
-              <Line data={dataChart2} options={options2} />
+              <Line
+                data={chartData(labels, dataMonthAgo)}
+                options={chartOptions("Casos hace 1 mes")}
+              />
             </CardWithHeader>
           ) : (
             <CardPlaceholder />

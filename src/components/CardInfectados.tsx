@@ -64,9 +64,9 @@ export const CardInfectados = () => {
     ],
   };
 
-  const activePercentage: number = (active * 100) / cases;
-  const criticalPercentage: number = (critical * 100) / cases;
-  const recoveredPercentage: number = (recovered * 100) / cases;
+  const activePercentage: number = (active * 100) / cases || 0;
+  const criticalPercentage: number = (critical * 100) / cases || 0;
+  const recoveredPercentage: number = (recovered * 100) / cases || 0;
 
   return (
     <Card className="shadow-lg">
@@ -74,7 +74,7 @@ export const CardInfectados = () => {
         <h3 className="text-uppercase fw-light text-gray-dark-color">
           Total Infectados
         </h3>
-        
+
         <Card.Text className="h1 text-color fw-bolder">
           {cases?.toLocaleString()}
         </Card.Text>
@@ -98,13 +98,11 @@ export const CardInfectados = () => {
               now={activePercentage}
             />
 
-            {data ? (
-              <Card.Text className="fw-bold text-first-color">
-                {activePercentage.toFixed(2)}%
-              </Card.Text>
-            ) : (
-              <Placeholder xs={1} />
-            )}
+           
+            <Card.Text className="fw-bold text-first-color">
+              {activePercentage.toFixed(2)}%
+            </Card.Text>
+             
           </Stack>
 
           <Stack className="flex-row align-items-center justify-content-between gap-3">
