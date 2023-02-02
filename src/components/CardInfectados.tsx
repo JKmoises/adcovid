@@ -11,7 +11,7 @@ import {
   Legend,
 } from "chart.js";
 import { useFetch } from "../hooks/useFetch";
-import { CovidGlobal, FetchData } from '../interfaces/interfaces';
+import { CovidGlobal, FetchData } from "../interfaces/interfaces";
 
 ChartJS.register(
   CategoryScale,
@@ -40,7 +40,9 @@ const options = {
 const labels = ["Casos hoy", "Muertes hoy", "Sanados hoy"];
 
 export const CardInfectados = () => {
-  const globals: FetchData<CovidGlobal> = useFetch(import.meta.env.VITE_GLOBALS_COVID);
+  const globals: FetchData<CovidGlobal> = useFetch(
+    import.meta.env.VITE_GLOBALS_COVID
+  );
   const { data } = globals;
   const {
     active,
@@ -72,13 +74,11 @@ export const CardInfectados = () => {
         <h3 className="text-uppercase fw-light text-gray-dark-color">
           Total Infectados
         </h3>
-        {data ? (
-          <Card.Text className="h1 text-color fw-bolder">
-            {cases?.toLocaleString()}
-          </Card.Text>
-        ) : (
-          <Placeholder xs={8} size="lg" />
-        )}
+        
+        <Card.Text className="h1 text-color fw-bolder">
+          {cases?.toLocaleString()}
+        </Card.Text>
+      
       </Card.Header>
 
       <Card.Body className="pt-0">
@@ -122,13 +122,10 @@ export const CardInfectados = () => {
               now={criticalPercentage}
             />
 
-            {data ? (
-              <Card.Text className="fw-bold text-first-color">
-                {criticalPercentage.toFixed(2)}%
-              </Card.Text>
-            ) : (
-              <Placeholder xs={1} />
-            )}
+            <Card.Text className="fw-bold text-first-color">
+              {criticalPercentage.toFixed(2)}%
+            </Card.Text>
+            
           </Stack>
 
           <Stack className="flex-row align-items-center justify-content-between gap-3">
@@ -146,26 +143,15 @@ export const CardInfectados = () => {
               now={recoveredPercentage}
             />
 
-            {data ? (
-              <Card.Text className="fw-bold text-first-color">
-                {recoveredPercentage.toFixed(1)}%
-              </Card.Text>
-            ) : (
-              <Placeholder xs={1} />
-            )}
+            <Card.Text className="fw-bold text-first-color">
+              {recoveredPercentage.toFixed(1)}%
+            </Card.Text>
           </Stack>
+          
         </Stack>
 
-        {data ? (
-          <Bar data={dataChart} options={options} />
-        ) : (
-          <>
-            <Placeholder xs={12} size="lg" />
-            <Placeholder xs={12} size="lg" />
-            <Placeholder xs={12} size="lg" />
-            <Placeholder xs={12} size="lg" />
-          </>
-        )}
+        <Bar data={dataChart} options={options} />
+      
       </Card.Body>
     </Card>
   );

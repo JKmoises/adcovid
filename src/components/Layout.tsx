@@ -46,7 +46,7 @@ export const Layout = () => {
         </div>
       </header>
 
-      <main className="d-flex flex-column align-items-center align-items-lg-stretch py-4 flex-grow-1">
+      <main className="d-flex flex-column align-items-center align-items-lg-stretch py-4 flex-grow-1 mb-6 mb-md-0">
         <Outlet/>
       </main>
     </div>

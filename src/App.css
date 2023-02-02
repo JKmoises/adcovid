@@ -79,6 +79,10 @@
   width: 5rem;
 }
 
+.mb-6{
+  margin-bottom: 6rem;
+}
+
 .nav-responsive{
   position: fixed;
   bottom: 0;

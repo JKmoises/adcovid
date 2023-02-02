@@ -1,12 +1,48 @@
-import { CardDay } from "../components/CardDay";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Card } from 'react-bootstrap';
 import { CardFallecidos } from "../components/CardFallecidos";
-import { CardInfectados } from "../components/CardInfectados";
 import { useFetch } from "../hooks/useFetch";
-import { yesterdayDate, dateMonthAgo } from "../helpers/formattedDates";
+
+import { CardInfectados } from "../components/CardInfectados";
 import { CovidDate, FetchData, CovidCountry, CovidGlobal } from '../interfaces/interfaces';
 import { CardPlaceholder } from "../components/CardPlaceholder";
-import { CardProgressCircular } from "../components/CardProgressCircular";
+import { CardWithHeader } from '../components/CardWithHeader';
+import { yesterdayDate, dateMonthAgo } from "../helpers/formattedDates";
+
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+  Filler
+} from "chart.js";
+import { Line } from "react-chartjs-2";
+import { buildStyles, CircularProgressbar } from 'react-circular-progressbar';
+import "react-circular-progressbar/dist/styles.css";
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+  Filler
+);  
+
+//* Estilos de progressBar 
+const progressBarStyles = buildStyles({
+  pathTransitionDuration: 0.5,
+  pathColor: "var(--second-color)",
+  textColor: "var(--second-color)",
+  trailColor: "var(--gray-light-color)",
+});
+
+const labels = ["Casos", "Muertes","Sanados"];
 
 //* Fecha del día e ayer y hace un mes
 const YESTERDAY_DATE: string = yesterdayDate();
@@ -50,29 +86,112 @@ export const Globales = () => {
   ];
 
   //* Incremento de casos a comporacion del día de ayer y hace un mes
-  const increaseCasesYesterday: number =
-    ((cases - CASES_YESTERDAY) * 100) / cases;
-  const increaseCasesMonthAgo: number =
-    ((cases - CASES_MONTH_AGO) * 100) / cases;
+  const increaseCasesYesterday: string =
+    (((cases - CASES_YESTERDAY) * 100) / cases || 0).toFixed(1);
+  const increaseCasesMonthAgo: string =
+    (((cases - CASES_MONTH_AGO) * 100) / cases || 0).toFixed(1);
 
   //* % de paises afectados
-  const percentageCountriesAffected: number = (affectedCountries * 100) / TOTAL_COUNTRIES || 0;
+  const percentageCountriesAffected: string =
+    ((affectedCountries * 100) / TOTAL_COUNTRIES || 0).toFixed(1);
 
   //* % de datos sobre chile 
-  const percentageCasesChile: number  = (covidChile?.data?.cases * 100) / cases || 0;
+  const percentageCasesChile: string = (
+    (covidChile?.data?.cases * 100) / cases || 0
+  ).toFixed(1);
+  
+  //* Configuración gráficos 
+  const options = {
+    fill: true,
+    responsive: true,
+    scales: {
+      y: {
+        display: false,
+      },
+    },
+    plugins: {
+      legend: {
+        display: false,
+      },
+      title: {
+        display: true,
+        text: "Casos covid-19 el día de ayer",
+        position: "bottom" as const,
+      },
+    },
+  };
+  const options2 = {
+    fill: true,
+    responsive: true,
+    scales: {
+      y: {
+        display: false,
+      },
+    },
+    plugins: {
+      legend: {
+        display: false,
+      },
+      title: {
+        display: true,
+        text: "Casos covid-19 hace 1 mes",
+        position: "bottom" as const,
+      },
+    },
+  };
+
+  const dataChart = {
+    labels,
+    datasets: [
+      {
+        data: dataYesterday,
+        borderColor: "#0E6655",
+        backgroundColor: "#73C6B670",
+        tension: 0.5,
+      },
+    ],
+  };
+
+  const dataChart2 = {
+    labels,
+    datasets: [
+      {
+        data: dataMonthAgo,
+        borderColor: "#0E6655",
+        backgroundColor: "#73C6B670",
+        tension: 0.5,
+      },
+    ],
+  };
 
   return (
     <>
       <Row className="justify-content-center align-items-center gap-5 gap-xl-2 mw-100">
         <Col lg={5} xl={4} className="p-lg-0">
           {data ? (
-            <CardDay
+            <CardWithHeader
               cardTitle="Casos covid-19 el día de ayer"
-              bodyText="(Aumento a comparación del día de ayer)"
-              footerText="A comparación de ayer crecieron en un"
-              chartData={dataYesterday}
-              increaseCases={increaseCasesYesterday}
-            />
+              footerText={
+                <>
+                  A comparación de ayer crecieron en un{" "}
+                  <span className="text-second-color fw-bolder">
+                    {increaseCasesYesterday}%
+                  </span>
+                </>
+              }
+            >
+              <Card.Text className="d-flex flex-column align-items-center m-0">
+                <span className="display-5 text-first-color">
+                  +{increaseCasesYesterday}%
+                </span>
+              </Card.Text>
+
+              <Card.Text className="text-gray-dark-color fw-bold">
+                <small>(Aumento a comparación del día de ayer)</small>
+              </Card.Text>
+
+              <Line data={dataChart} options={options} />
+            </CardWithHeader>
           ) : (
             <CardPlaceholder />
           )}
@@ -80,13 +199,29 @@ export const Globales = () => {
 
         <Col lg={5} xl={4} className="p-lg-0">
           {data ? (
-            <CardDay
+            <CardWithHeader
               cardTitle="Casos covid-19 hace 1 mes"
-              bodyText="(Aumento a comparación de hace 1 mes)"
-              footerText="A comparación de hace 1 mes crecieron en un"
-              chartData={dataMonthAgo}
-              increaseCases={increaseCasesMonthAgo}
-            />
+              footerText={
+                <>
+                  A comparación de hace 1 mes crecieron en un{" "}
+                  <span className="text-second-color fw-bolder">
+                    {increaseCasesMonthAgo}%
+                  </span>
+                </>
+              }
+            >
+              <Card.Text className="d-flex flex-column align-items-center m-0">
+                <span className="display-5 text-first-color">
+                  +{increaseCasesMonthAgo}%
+                </span>
+              </Card.Text>
+
+              <Card.Text className="text-gray-dark-color fw-bold">
+                <small>(Aumento a comparación de hace 1 mes)</small>
+              </Card.Text>
+
+              <Line data={dataChart2} options={options2} />
+            </CardWithHeader>
           ) : (
             <CardPlaceholder />
           )}
@@ -98,47 +233,59 @@ export const Globales = () => {
       </Row>
 
       <Row className="justify-content-center align-items-center gap-3 gap-xl-2 w-100 mt-4 mt-xl-2">
-        <Col sm={9} md={7} lg={5} xl={5} className="p-lg-0">
+        <Col sm={9} md={7} lg={5} xl={4} className="p-lg-0">
           <CardInfectados />
         </Col>
 
         <Col sm={9} md={5} lg={5} xl={3} className="p-lg-0">
-          <CardProgressCircular
+          <CardWithHeader
             cardTitle="% paises y territorios afectados"
             footerText={
-              <small>
+              <>
                 De{" "}
                 <span className="text-second-color fw-bolder">
                   {TOTAL_COUNTRIES}
                 </span>{" "}
                 países y territorios el{" "}
                 <span className="text-second-color fw-bolder">
-                  {percentageCountriesAffected.toFixed(1)}%
+                  {percentageCountriesAffected}%
                 </span>{" "}
                 fué afectado por el covid-19
-              </small>
+              </>
             }
-            percentage={percentageCountriesAffected}
-          />
+          >
+            <CircularProgressbar
+              value={Number(percentageCountriesAffected)}
+              text={`${percentageCountriesAffected}%`}
+              strokeWidth={6}
+              styles={progressBarStyles}
+            />
+          </CardWithHeader>
         </Col>
 
         <Col sm={9} md={5} lg={5} xl={3} className="p-lg-0">
-          <CardProgressCircular
+          <CardWithHeader
             cardTitle="Infectados en chile"
             footerText={
-              <small>
+              <>
                 <span className="text-second-color fw-bolder">
-                  {covidChile?.data?.cases.toLocaleString()}
+                  {covidChile.data?.cases.toLocaleString()}
                 </span>{" "}
                 casos en chile son el{" "}
                 <span className="text-second-color fw-bolder">
-                  {percentageCasesChile.toFixed(1)}%
+                  {percentageCasesChile}%
                 </span>{" "}
                 de infectados en el mundo
-              </small>
+              </>
             }
-            percentage={percentageCasesChile}
-          />
+          >
+            <CircularProgressbar
+              value={Number(percentageCountriesAffected)}
+              text={`${percentageCasesChile}%`}
+              strokeWidth={6}
+              styles={progressBarStyles}
+            />
+          </CardWithHeader>
         </Col>
       </Row>
     </>
