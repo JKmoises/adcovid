@@ -1,4 +1,4 @@
-export function chartOptions(text: string){
+export function lineChartOptions(text: string) {
   return {
     fill: true,
     responsive: true,
@@ -20,7 +20,10 @@ export function chartOptions(text: string){
   };
 }
 
-export function chartData(labels: string[],data: number[]){
+export function lineChartData(
+  data: number[],
+  labels: string[] = ["Casos", "Muertes", "Sanados"]
+) {
   return {
     labels,
     datasets: [
@@ -31,5 +34,36 @@ export function chartData(labels: string[],data: number[]){
         tension: 0.5,
       },
     ],
+  };
+}
+
+export function barChartData(
+  data: number[],
+  labels: string[] = ["Casos hoy", "Muertes hoy", "Sanados hoy"]
+) {
+  return {
+    labels,
+    datasets: [
+      {
+        data,
+        backgroundColor: ["#145A32", "#0E6655", "#239B56"],
+      },
+    ],
+  };
+}
+
+export function barChartOptions(){
+  return {
+    responsive: true,
+    barThickness: 20,
+    borderRadius: 8,
+    plugins: {
+      legend: {
+        display: false,
+      },
+      title: {
+        display: false,
+      },
+    },
   };
 }

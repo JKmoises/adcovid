@@ -1,15 +1,3 @@
-export interface FetchData<T> {
-  data: T;
-  isPending: boolean;
-  error: ErrorData | null;
-}
-
-export interface ErrorData{
-  err: boolean;
-  status: number;
-  statusText: string;
-};
-
 export interface CovidGlobal {
   active: number;
   activePerOneMillion: number;

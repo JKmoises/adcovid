@@ -1,13 +1,39 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import './index.css';
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  BarElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+  Filler,
+} from "chart.js";
+
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
 import "./App.css";
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { Layout } from './components/Layout';
-import { Continentes } from './pages/Continentes';
-import { Globales } from './pages/Globales';
-import { Pais } from './pages/Pais';
-import { Vacunas } from './pages/Vacunas';
+import "react-circular-progressbar/dist/styles.css";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Layout } from "./components/Layout";
+import { Continentes } from "./pages/Continentes";
+import { Globales, loader as globalesLoader } from "./pages/Globales";
+import { Pais } from "./pages/Pais";
+import { Vacunas } from "./pages/Vacunas";
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  BarElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+  Filler
+);
 
 const router = createBrowserRouter([
   {
@@ -17,7 +43,7 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Globales />,
-
+        loader: globalesLoader,
       },
       {
         path: "/casos-continente",
