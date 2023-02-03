@@ -16,6 +16,7 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import "./App.css";
 import "react-circular-progressbar/dist/styles.css";
+
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Layout } from "./components/Layout";
 import { Continentes } from "./pages/Continentes";

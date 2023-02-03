@@ -9,14 +9,13 @@ import {  NormalCard } from "../components/NormalCard";
 import { yesterdayDate, dateMonthAgo } from "../helpers/formattedDates";
 import { lineChartData, lineChartOptions, barChartData, barChartOptions } from '../data/charts_data';
 import { getGlobalsCovid, getYesterdayCovid, getMonthAgoCovid, getChileCovid } from '../data/covid_data';
-import { CovidDate, CovidCountry, CovidGlobal } from '../interfaces/interfaces';
 
 import { Bar, Line } from "react-chartjs-2";
 import { buildStyles, CircularProgressbar } from 'react-circular-progressbar';
 
 import covidIcon from "../assets/covid-virus.webp";
+import { TOTAL_COUNTRIES, useGlobalCovid } from '../hooks/useGlobalCovid';
  
-
 
 //* Estilos de progressBar 
 const progressBarStyles = buildStyles({
@@ -25,15 +24,6 @@ const progressBarStyles = buildStyles({
   textColor: "var(--second-color)",
   trailColor: "var(--gray-light-color)",
 });
-
-
-//* Fecha del día de ayer y hace un mes
-const YESTERDAY_DATE: string = yesterdayDate();
-const MONTH_AGO_DATE: string = dateMonthAgo();
-
-//* Total de paises y territorios en el mundo
-const TOTAL_COUNTRIES = 244;
-
 
 
 export async function loader() {
@@ -53,79 +43,28 @@ export async function loader() {
 }
 
 export const Globales = () => {
-  const [
-    globals,
-    covidYesterday,
-    covidMonthAgo,
-    covidChile
-  ] = useLoaderData() as [CovidGlobal, CovidDate, CovidDate, CovidCountry];
-
   const {
-    affectedCountries,
-    active,
-    cases,
-    critical,
-    deaths,
-    recovered,
-    todayCases,
-    todayDeaths,
-    todayRecovered,
-  } = globals;
+    dataYesterday,
+    dataMonthAgo,
+    increaseCasesYesterday,
+    increaseCasesMonthAgo,
+    percentageCountriesAffected,
+    percentageCasesChile,
+    activePercentage,
+    criticalPercentage,
+    recoveredPercentage,
+    percentageDeaths,
+    globals,
+    covidChile,
+  } = useGlobalCovid();
 
-  //* Obteniendo datos del día de ayer
-  const CASES_YESTERDAY: number = covidYesterday.cases[YESTERDAY_DATE];
-  const DEATHS_YESTERDAY: number = covidYesterday.deaths[YESTERDAY_DATE];
-  const RECOVERED_YESTERDAY: number = covidYesterday.recovered[YESTERDAY_DATE];
+  const { cases,deaths,todayCases, todayDeaths, todayRecovered } = globals;
 
-  //* Obteniendo datos de hace un mes
-  const CASES_MONTH_AGO: number = covidMonthAgo.cases[MONTH_AGO_DATE];
-  const DEATHS_MONTH_AGO: number = covidMonthAgo.deaths[MONTH_AGO_DATE];
-  const RECOVERED_MONTH_AGO: number = covidMonthAgo.recovered[MONTH_AGO_DATE];
-
-  //* Data del día de ayer
-  const dataYesterday: number[] = [
-    CASES_YESTERDAY,
-    DEATHS_YESTERDAY,
-    RECOVERED_YESTERDAY,
-  ];
-
-  //* Data de hace un mes
-  const dataMonthAgo: number[] = [
-    CASES_MONTH_AGO,
-    DEATHS_MONTH_AGO,
-    RECOVERED_MONTH_AGO,
-  ];
-
-  //* Incremento de casos a comporacion del día de ayer y hace un mes
-  const increaseCasesYesterday: string =
-    (((cases - CASES_YESTERDAY) * 100) / cases || 0).toFixed(1);
-  const increaseCasesMonthAgo: string =
-    (((cases - CASES_MONTH_AGO) * 100) / cases || 0).toFixed(1);
-
-  //* % de paises afectados
-  const percentageCountriesAffected: string =
-    ((affectedCountries * 100) / TOTAL_COUNTRIES || 0).toFixed(1);
-
-  //* % de datos sobre chile 
-  const percentageCasesChile: string = (
-    (covidChile.cases * 100) / cases || 0
-  ).toFixed(1);
-
-  //* % de casos activos, criticos y recuperados 
-  const activePercentage: number = (active * 100) / cases || 0;
-  const criticalPercentage: number = (critical * 100) / cases || 0;
-  const recoveredPercentage: number = (recovered * 100) / cases || 0;
-
-  //* % de muertes globales
-  const percentageDeaths = (deaths * 100) / cases;
-  
- 
 
   return (
     <>
       <Row className="justify-content-center align-items-center gap-5 gap-xl-2 mw-100">
         <Col lg={5} xl={4} className="p-lg-0">
-          {covidYesterday ? (
             <CardWithHeader
               cardTitle="Casos covid-19 el día de ayer"
               footerText={
@@ -152,42 +91,36 @@ export const Globales = () => {
                 options={lineChartOptions("Casos el día de ayer")}
               />
             </CardWithHeader>
-          ) : (
-            <CardPlaceholder />
-          )}
         </Col>
 
         <Col lg={5} xl={4} className="p-lg-0">
-          {covidMonthAgo ? (
-            <CardWithHeader
-              cardTitle="Casos covid-19 hace 1 mes"
-              footerText={
-                <>
-                  A comparación de hace 1 mes crecieron en un{" "}
-                  <span className="text-second-color fw-bolder">
-                    {increaseCasesMonthAgo}%
-                  </span>
-                </>
-              }
-            >
-              <Card.Text className="d-flex flex-column align-items-center m-0">
-                <span className="display-5 text-first-color">
-                  +{increaseCasesMonthAgo}%
+          <CardWithHeader
+            cardTitle="Casos covid-19 hace 1 mes"
+            footerText={
+              <>
+                A comparación de hace 1 mes crecieron en un{" "}
+                <span className="text-second-color fw-bolder">
+                  {increaseCasesMonthAgo}%
                 </span>
-              </Card.Text>
+              </>
+            }
+          >
+            <Card.Text className="d-flex flex-column align-items-center m-0">
+              <span className="display-5 text-first-color">
+                +{increaseCasesMonthAgo}%
+              </span>
+            </Card.Text>
 
-              <Card.Text className="text-gray-dark-color fw-bold">
-                <small>(Aumento a comparación de hace 1 mes)</small>
-              </Card.Text>
+            <Card.Text className="text-gray-dark-color fw-bold">
+              <small>(Aumento a comparación de hace 1 mes)</small>
+            </Card.Text>
 
-              <Line
-                data={lineChartData(dataMonthAgo)}
-                options={lineChartOptions("Casos hace 1 mes")}
-              />
-            </CardWithHeader>
-          ) : (
-            <CardPlaceholder />
-          )}
+            <Line
+              data={lineChartData(dataMonthAgo)}
+              options={lineChartOptions("Casos hace 1 mes")}
+            />
+          </CardWithHeader>
+        
         </Col>
 
         <Col sm={8} lg={6} xl={3} className="p-lg-0">
@@ -219,7 +152,7 @@ export const Globales = () => {
                 />
 
                 <Card.Text className="fw-bold text-first-color">
-                  {activePercentage.toFixed(2)}%
+                  {activePercentage}%
                 </Card.Text>
               </Stack>
 
@@ -239,7 +172,7 @@ export const Globales = () => {
                 />
 
                 <Card.Text className="fw-bold text-first-color">
-                  {criticalPercentage.toFixed(2)}%
+                  {criticalPercentage}%
                 </Card.Text>
               </Stack>
 
@@ -259,7 +192,7 @@ export const Globales = () => {
                 />
 
                 <Card.Text className="fw-bold text-first-color">
-                  {recoveredPercentage.toFixed(1)}%
+                  {recoveredPercentage}%
                 </Card.Text>
               </Stack>
             </Stack>
