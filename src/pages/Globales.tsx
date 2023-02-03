@@ -148,7 +148,7 @@ export const Globales = () => {
                 <ProgressBar
                   className="progress-second-color w-75"
                   animated
-                  now={activePercentage}
+                  now={Number(activePercentage)}
                 />
 
                 <Card.Text className="fw-bold text-first-color">
@@ -168,7 +168,7 @@ export const Globales = () => {
                 <ProgressBar
                   className="progress-second-color w-75"
                   animated
-                  now={criticalPercentage}
+                  now={Number(criticalPercentage)}
                 />
 
                 <Card.Text className="fw-bold text-first-color">
@@ -188,7 +188,7 @@ export const Globales = () => {
                 <ProgressBar
                   className="progress-second-color w-75"
                   animated
-                  now={recoveredPercentage}
+                  now={Number(recoveredPercentage)}
                 />
 
                 <Card.Text className="fw-bold text-first-color">
