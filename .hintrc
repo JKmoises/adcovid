@@ -9,7 +9,8 @@
       "default",
       {
         "ignore": [
-          "img[loading]"
+          "img[loading]",
+          "meta[name=theme-color]"
         ]
       }
     ]
