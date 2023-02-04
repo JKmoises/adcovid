@@ -18,8 +18,8 @@ export const Layout = () => {
             className="logo img-fluid py-md-4 pt-3"
             src={logo}
             alt="Logo"
-            width={122}
-            height={118}
+            width={112}
+            height={156}
           />
 
           <nav className="d-flex flex-md-column align-items-center gap-4 ps-xl-2">

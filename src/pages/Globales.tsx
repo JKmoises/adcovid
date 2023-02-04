@@ -1,20 +1,17 @@
 import { Row, Col, Card, Stack, ProgressBar } from 'react-bootstrap';
-import { useLoaderData } from 'react-router-dom';
 
-import { CardPlaceholder } from "../components/CardPlaceholder";
 import { CardIcon } from "../components/CardIcon";
 import { CardWithHeader } from '../components/CardWithHeader';
 import {  NormalCard } from "../components/NormalCard";
 
-import { yesterdayDate, dateMonthAgo } from "../helpers/formattedDates";
 import { lineChartData, lineChartOptions, barChartData, barChartOptions } from '../data/charts_data';
 import { getGlobalsCovid, getYesterdayCovid, getMonthAgoCovid, getChileCovid } from '../data/covid_data';
+import { TOTAL_COUNTRIES, useGlobalCovid } from '../hooks/useGlobalCovid';
 
 import { Bar, Line } from "react-chartjs-2";
 import { buildStyles, CircularProgressbar } from 'react-circular-progressbar';
 
 import covidIcon from "../assets/covid-virus.webp";
-import { TOTAL_COUNTRIES, useGlobalCovid } from '../hooks/useGlobalCovid';
  
 
 //* Estilos de progressBar 
