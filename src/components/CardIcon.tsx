@@ -18,8 +18,8 @@ export const CardIcon = ({ data,percentage,icon }: AppProps) => {
         className="position-absolute img-fluid icon-covid"
         src={icon}
         alt="Covid icono"
-        width={65}
-        height={65}
+        width={60}
+        height={61}
       />
       <h4 className="fw-bold text-center">Fallecidos de covid-19</h4>
 

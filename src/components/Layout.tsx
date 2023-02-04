@@ -23,24 +23,24 @@ export const Layout = () => {
           />
 
           <nav className="d-flex flex-md-column align-items-center gap-4 ps-xl-2">
-            <NavLink className="icon" to="/" title="Covid mundialmente">
-              <i className="bi bi-virus2"></i>
+            <NavLink className={({isActive}) => isActive ? 'active-link' : ''} to="/" title="Covid mundialmente">
+              <i className="bi bi-virus2 icon"></i>
             </NavLink>
 
             <NavLink
-              className="icon"
+              className={({isActive}) => isActive ? 'active-link' : ''}
               to="/casos-continente"
               title="Covid por continente"
             >
-              <i className="bi bi-globe-americas"></i>
+              <i className="bi bi-globe-americas icon"></i>
             </NavLink>
 
-            <NavLink className="icon" to="/casos-pais" title="Covid por pais">
-              <i className="bi bi-flag-fill"></i>
+            <NavLink className={({isActive}) => isActive ? 'active-link' : ''} to="/casos-pais" title="Covid por pais">
+              <i className="bi bi-flag-fill icon"></i>
             </NavLink>
 
-            <NavLink className="icon" to="/vacunas" title="Vacunas realizadas">
-              <i className="bi bi-clipboard2-pulse-fill"></i>
+            <NavLink className={({isActive}) => isActive ? 'active-link' : ''} to="/vacunas" title="Vacunas realizadas">
+              <i className="bi bi-clipboard2-pulse-fill icon"></i>
             </NavLink>
           </nav>
         </div>

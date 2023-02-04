@@ -51,9 +51,14 @@ export const useGlobalCovid = () => {
   const criticalPercentage = ((critical * 100) / cases || 0).toFixed(2);
   const recoveredPercentage = ((recovered * 100) / cases || 0).toFixed(1);
 
-  //* % de paises afectados y sobre chile
+  //* % de paises afectados
   const percentageCountriesAffected = ((affectedCountries * 100) / TOTAL_COUNTRIES || 0).toFixed(1);
-  const percentageCasesChile = ((covidChile.cases * 100) / cases || 0).toFixed(1);
+
+  //* % de casos, fallecidos, casos activos y recuperados en chile 
+  const percentageCasesChile = ((covidChile.cases * 100) / cases || 0).toFixed(2);
+  const percentageDeathsChile = ((covidChile.deaths * 100) / deaths || 0).toFixed(2);
+  const percentageActiveChile = ((covidChile.active * 100) / active || 0).toFixed(2);
+  const percentageRecoveredChile = ((covidChile.recovered * 100) / recovered || 0).toFixed(2);
 
 
 
@@ -62,12 +67,15 @@ export const useGlobalCovid = () => {
     dataMonthAgo,
     increaseCasesYesterday,
     increaseCasesMonthAgo,
-    percentageCountriesAffected,
-    percentageCasesChile,
+    percentageDeaths,
     activePercentage,
     criticalPercentage,
     recoveredPercentage,
-    percentageDeaths,
+    percentageCountriesAffected,
+    percentageCasesChile,
+    percentageDeathsChile,
+    percentageActiveChile,
+    percentageRecoveredChile,
     globals,
     covidChile,
   };

@@ -19,7 +19,7 @@
 
 
 /* ********** My Styles ********** */
-.active {
+.active-link {
   display: grid;
   place-items: center;
   background-color: var(--third-color);
@@ -130,7 +130,7 @@ No media query for `xs` since this is the default in Bootstrap */
 
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
-  .active {
+  .active-link {
     width: 4rem;
     height: 4rem;
   }

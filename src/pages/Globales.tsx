@@ -1,4 +1,4 @@
-import { Row, Col, Card, Stack, ProgressBar } from 'react-bootstrap';
+import { Row, Col, Card, Stack, ProgressBar, Tab } from 'react-bootstrap';
 
 import { CardIcon } from "../components/CardIcon";
 import { CardWithHeader } from '../components/CardWithHeader';
@@ -12,6 +12,7 @@ import { Bar, Line } from "react-chartjs-2";
 import { buildStyles, CircularProgressbar } from 'react-circular-progressbar';
 
 import covidIcon from "../assets/covid-virus.webp";
+import { CardHeaderContent } from '../components/CardHeaderContent';
  
 
 //* Estilos de progressBar 
@@ -46,11 +47,14 @@ export const Globales = () => {
     increaseCasesYesterday,
     increaseCasesMonthAgo,
     percentageCountriesAffected,
-    percentageCasesChile,
     activePercentage,
     criticalPercentage,
     recoveredPercentage,
     percentageDeaths,
+    percentageCasesChile,
+    percentageDeathsChile,
+    percentageActiveChile,
+    percentageRecoveredChile,
     globals,
     covidChile,
   } = useGlobalCovid();
@@ -74,7 +78,7 @@ export const Globales = () => {
               </>
             }
           >
-            <Card.Text className="d-flex flex-column align-items-center m-0">
+            <Card.Text className="d-flex flex-column align-items-center m-0 pt-2">
               <span className="display-5 text-first-color">
                 +{increaseCasesYesterday}%
               </span>
@@ -103,7 +107,7 @@ export const Globales = () => {
               </>
             }
           >
-            <Card.Text className="d-flex flex-column align-items-center m-0">
+            <Card.Text className="d-flex flex-column align-items-center m-0 pt-2">
               <span className="display-5 text-first-color">
                 +{increaseCasesMonthAgo}%
               </span>
@@ -134,7 +138,7 @@ export const Globales = () => {
           <NormalCard data={cases}>
             <Stack className="gap-3 pb-3">
               <Stack className="flex-row align-items-center gap-3">
-                <div className="display-5 text-color">
+                <div className="fs-2 text-color">
                   <i className="bi bi-activity"></i>
                 </div>
 
@@ -154,7 +158,7 @@ export const Globales = () => {
               </Stack>
 
               <Stack className="flex-row align-items-center justify-content-between gap-3">
-                <div className="display-5 text-color">
+                <div className="fs-2 text-color">
                   <i className="bi bi-exclamation-square"></i>
                 </div>
 
@@ -174,7 +178,7 @@ export const Globales = () => {
               </Stack>
 
               <Stack className="flex-row align-items-center justify-content-between gap-3">
-                <div className="display-5 text-color">
+                <div className="fs-2 text-color">
                   <i className="bi bi-bandaid"></i>
                 </div>
 
@@ -203,7 +207,7 @@ export const Globales = () => {
 
         <Col sm={9} md={5} lg={5} xl={3} className="p-lg-0">
           <CardWithHeader
-            cardTitle="% paises y territorios afectados"
+            cardTitle="% paises afectados"
             footerText={
               <>
                 De{" "}
@@ -219,6 +223,7 @@ export const Globales = () => {
             }
           >
             <CircularProgressbar
+              className="pt-3"
               value={Number(percentageCountriesAffected)}
               text={`${percentageCountriesAffected}%`}
               strokeWidth={6}
@@ -227,29 +232,103 @@ export const Globales = () => {
           </CardWithHeader>
         </Col>
 
-        <Col sm={9} md={5} lg={5} xl={3} className="p-lg-0">
-          <CardWithHeader
-            cardTitle="Infectados en chile"
-            footerText={
-              <>
-                <span className="text-second-color fw-bolder">
-                  {covidChile.cases.toLocaleString()}
-                </span>{" "}
-                casos en chile son el{" "}
-                <span className="text-second-color fw-bolder">
-                  {percentageCasesChile}%
-                </span>{" "}
-                de infectados en el mundo
-              </>
-            }
-            icon={flag}
-          >
-            <CircularProgressbar
-              value={Number(percentageCountriesAffected)}
-              text={`${percentageCasesChile}%`}
-              strokeWidth={6}
-              styles={progressBarStyles}
-            />
+        <Col sm={9} md={5} lg={5} xl={4} className="p-lg-0">
+          <CardWithHeader cardTitle="Infectados en chile" icon={flag} tabs>
+            <Tab eventKey="casos" title="casos" tabClassName="">
+              <CardHeaderContent
+                footerText={
+                  <>
+                    <span className="text-second-color fw-bolder">
+                      {covidChile.cases.toLocaleString()}
+                    </span>{" "}
+                    casos en chile son el{" "}
+                    <span className="text-second-color fw-bolder">
+                      {percentageCasesChile}%
+                    </span>{" "}
+                    en el mundo
+                  </>
+                }
+              >
+                <CircularProgressbar
+                  value={Number(percentageCasesChile)}
+                  text={`${percentageCasesChile}%`}
+                  strokeWidth={5}
+                  styles={progressBarStyles}
+                />
+              </CardHeaderContent>
+            </Tab>
+
+            <Tab eventKey="fallecidos" title="fallecidos" tabClassName="">
+              <CardHeaderContent
+                footerText={
+                  <>
+                    <span className="text-second-color fw-bolder">
+                      {covidChile.deaths.toLocaleString()}
+                    </span>{" "}
+                    fallecidos en chile son el{" "}
+                    <span className="text-second-color fw-bolder">
+                      {percentageDeathsChile}%
+                    </span>{" "}
+                    en el mundo
+                  </>
+                }
+              >
+                <CircularProgressbar
+                  value={Number(percentageDeathsChile)}
+                  text={`${percentageDeathsChile}%`}
+                  strokeWidth={5}
+                  styles={progressBarStyles}
+                />
+              </CardHeaderContent>
+            </Tab>
+
+            <Tab eventKey="activos" title="activos" tabClassName="">
+              <CardHeaderContent
+                footerText={
+                  <>
+                    <span className="text-second-color fw-bolder">
+                      {covidChile.active.toLocaleString()}
+                    </span>{" "}
+                    casos activos en chile son el{" "}
+                    <span className="text-second-color fw-bolder">
+                      {percentageActiveChile}%
+                    </span>{" "}
+                    en el mundo
+                  </>
+                }
+              >
+                <CircularProgressbar
+                  value={Number(percentageActiveChile)}
+                  text={`${percentageActiveChile}%`}
+                  strokeWidth={5}
+                  styles={progressBarStyles}
+                />
+              </CardHeaderContent>
+            </Tab>
+
+            <Tab eventKey="recuperados" title="recuperados" tabClassName="">
+              <CardHeaderContent
+                footerText={
+                  <>
+                    <span className="text-second-color fw-bolder">
+                      {covidChile.recovered.toLocaleString()}
+                    </span>{" "}
+                    de recuperados en chile son el{" "}
+                    <span className="text-second-color fw-bolder">
+                      {percentageRecoveredChile}%
+                    </span>{" "}
+                    en el mundo
+                  </>
+                }
+              >
+                <CircularProgressbar
+                  value={Number(percentageRecoveredChile)}
+                  text={`${percentageRecoveredChile}%`}
+                  strokeWidth={5}
+                  styles={progressBarStyles}
+                />
+              </CardHeaderContent>
+            </Tab>
           </CardWithHeader>
         </Col>
       </Row>
