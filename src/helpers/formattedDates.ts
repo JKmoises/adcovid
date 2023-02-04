@@ -8,7 +8,7 @@ const OPTIONS: Intl.DateTimeFormatOptions = {
 
 export function yesterdayDate(): string{
   let yesterdayDate = new Date();
-  yesterdayDate.setDate(yesterdayDate.getDate() - 2);
+  yesterdayDate.setDate(yesterdayDate.getDate() - 1);
   
   let yesterdayDateFormat = yesterdayDate.toLocaleDateString("en-US", OPTIONS);
 

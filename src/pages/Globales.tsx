@@ -55,39 +55,40 @@ export const Globales = () => {
     covidChile,
   } = useGlobalCovid();
 
-  const { cases,deaths,todayCases, todayDeaths, todayRecovered } = globals;
+  const { cases, deaths, todayCases, todayDeaths, todayRecovered } = globals;
+  const { flag } = covidChile.countryInfo;
 
 
   return (
     <>
       <Row className="justify-content-center align-items-center gap-5 gap-xl-2 mw-100">
         <Col lg={5} xl={4} className="p-lg-0">
-            <CardWithHeader
-              cardTitle="Casos covid-19 el día de ayer"
-              footerText={
-                <>
-                  A comparación de ayer crecieron en un{" "}
-                  <span className="text-second-color fw-bolder">
-                    {increaseCasesYesterday}%
-                  </span>
-                </>
-              }
-            >
-              <Card.Text className="d-flex flex-column align-items-center m-0">
-                <span className="display-5 text-first-color">
-                  +{increaseCasesYesterday}%
+          <CardWithHeader
+            cardTitle="Casos covid-19 el día de ayer"
+            footerText={
+              <>
+                A comparación de ayer crecieron en un{" "}
+                <span className="text-second-color fw-bolder">
+                  {increaseCasesYesterday}%
                 </span>
-              </Card.Text>
+              </>
+            }
+          >
+            <Card.Text className="d-flex flex-column align-items-center m-0">
+              <span className="display-5 text-first-color">
+                +{increaseCasesYesterday}%
+              </span>
+            </Card.Text>
 
-              <Card.Text className="text-gray-dark-color fw-bold">
-                <small>(Aumento a comparación del día de ayer)</small>
-              </Card.Text>
+            <Card.Text className="text-gray-dark-color fw-bold">
+              <small>(Aumento a comparación del día de ayer)</small>
+            </Card.Text>
 
-              <Line
-                data={lineChartData(dataYesterday)}
-                options={lineChartOptions("Casos el día de ayer")}
-              />
-            </CardWithHeader>
+            <Line
+              data={lineChartData(dataYesterday)}
+              options={lineChartOptions("Casos el día de ayer")}
+            />
+          </CardWithHeader>
         </Col>
 
         <Col lg={5} xl={4} className="p-lg-0">
@@ -117,7 +118,6 @@ export const Globales = () => {
               options={lineChartOptions("Casos hace 1 mes")}
             />
           </CardWithHeader>
-        
         </Col>
 
         <Col sm={8} lg={6} xl={3} className="p-lg-0">
@@ -242,6 +242,7 @@ export const Globales = () => {
                 de infectados en el mundo
               </>
             }
+            icon={flag}
           >
             <CircularProgressbar
               value={Number(percentageCountriesAffected)}
