@@ -2,6 +2,19 @@
   position: relative;
 }
 /* ********** Bootstrap Styles ********** */
+.nav-link.active,
+.nav-link:hover,
+.nav-link:focus{
+  border-radius: 0;
+  border: none;
+  outline: 0;
+}
+
+.nav-link.active{
+  --bs-nav-tabs-link-active-border-color: var(--first-color);
+  border-bottom: medium solid;
+}
+
 .progress{
   --bs-progress-bg: var(--gray-light-color) !important;
   --bs-progress-bar-bg: var(--third-color) !important;

@@ -9,19 +9,25 @@ import { getGlobalsCovid, getYesterdayCovid, getMonthAgoCovid, getChileCovid } f
 import { TOTAL_COUNTRIES, useGlobalCovid } from '../hooks/useGlobalCovid';
 
 import { Bar, Line } from "react-chartjs-2";
-import { buildStyles, CircularProgressbar } from 'react-circular-progressbar';
+import { CircularProgressbar } from 'react-circular-progressbar';
 
 import covidIcon from "../assets/covid-virus.webp";
 import { CardHeaderContent } from '../components/CardHeaderContent';
  
 
 //* Estilos de progressBar 
-const progressBarStyles = buildStyles({
-  pathTransitionDuration: 0.5,
-  pathColor: "var(--second-color)",
-  textColor: "var(--second-color)",
-  trailColor: "var(--gray-light-color)",
-});
+const progressBarStyles = {
+  path: {
+    stroke: "var(--second-color)",
+    transition: "stroke-dashoffset 0.5s ease",
+  },
+  text: {
+    fill: "var(--second-color)",
+  },
+  trail: {
+    stroke: "var(--gray-light-color)",
+  },
+};
 
 
 export async function loader() {
@@ -214,11 +220,11 @@ export const Globales = () => {
                 <span className="text-second-color fw-bolder">
                   {TOTAL_COUNTRIES}
                 </span>{" "}
-                países y territorios el{" "}
+                países el{" "}
                 <span className="text-second-color fw-bolder">
                   {percentageCountriesAffected}%
                 </span>{" "}
-                fué afectado por el covid-19
+                fue afectado por covid
               </>
             }
           >
@@ -234,7 +240,11 @@ export const Globales = () => {
 
         <Col sm={9} md={5} lg={5} xl={4} className="p-lg-0">
           <CardWithHeader cardTitle="Infectados en chile" icon={flag} tabs>
-            <Tab eventKey="casos" title="casos" tabClassName="">
+            <Tab
+              eventKey="casos"
+              title="casos"
+              tabClassName="text-gray-dark-color text-uppercase px-2"
+            >
               <CardHeaderContent
                 footerText={
                   <>
@@ -258,7 +268,11 @@ export const Globales = () => {
               </CardHeaderContent>
             </Tab>
 
-            <Tab eventKey="fallecidos" title="fallecidos" tabClassName="">
+            <Tab
+              eventKey="fallecidos"
+              title="fallecidos"
+              tabClassName="text-gray-dark-color text-uppercase px-2"
+            >
               <CardHeaderContent
                 footerText={
                   <>
@@ -282,7 +296,11 @@ export const Globales = () => {
               </CardHeaderContent>
             </Tab>
 
-            <Tab eventKey="activos" title="activos" tabClassName="">
+            <Tab
+              eventKey="activos"
+              title="activos"
+              tabClassName="text-gray-dark-color text-uppercase px-2"
+            >
               <CardHeaderContent
                 footerText={
                   <>
@@ -306,7 +324,11 @@ export const Globales = () => {
               </CardHeaderContent>
             </Tab>
 
-            <Tab eventKey="recuperados" title="recuperados" tabClassName="">
+            <Tab
+              eventKey="recuperados"
+              title="recuperados"
+              tabClassName="text-gray-dark-color text-uppercase px-2"
+            >
               <CardHeaderContent
                 footerText={
                   <>
