@@ -39,7 +39,12 @@ export const CardWithHeader = ({
       </Card.Header>
 
       {tabs ? (
-        <Tabs defaultActiveKey="fallecidos" className="mb-3" justify>
+        <Tabs
+          defaultActiveKey="fallecidos"
+          transition={true}
+          className="mb-3"
+          justify
+        >
           {children}
         </Tabs>
       ) : (

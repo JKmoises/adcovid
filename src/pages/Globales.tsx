@@ -68,7 +68,6 @@ export const Globales = () => {
   const { cases, deaths, todayCases, todayDeaths, todayRecovered } = globals;
   const { flag } = covidChile.countryInfo;
 
-
   return (
     <>
       <Row className="justify-content-center align-items-center gap-5 gap-xl-2 mw-100">
@@ -244,6 +243,7 @@ export const Globales = () => {
               eventKey="casos"
               title="casos"
               tabClassName="text-gray-dark-color text-uppercase px-2"
+              className="transition"
             >
               <CardHeaderContent
                 footerText={
@@ -272,6 +272,7 @@ export const Globales = () => {
               eventKey="fallecidos"
               title="fallecidos"
               tabClassName="text-gray-dark-color text-uppercase px-2"
+              className="transition"
             >
               <CardHeaderContent
                 footerText={
@@ -300,6 +301,7 @@ export const Globales = () => {
               eventKey="activos"
               title="activos"
               tabClassName="text-gray-dark-color text-uppercase px-2"
+              className="transition"
             >
               <CardHeaderContent
                 footerText={
@@ -328,6 +330,7 @@ export const Globales = () => {
               eventKey="recuperados"
               title="recuperados"
               tabClassName="text-gray-dark-color text-uppercase px-2"
+              className="transition"
             >
               <CardHeaderContent
                 footerText={

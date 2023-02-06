@@ -1,6 +1,34 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
+import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import { NavLink, Outlet } from "react-router-dom";
 import logo from "../assets/logo.webp";
+
+const links = [
+  {
+    id: 1,
+    path: "/",
+    icon: "bi-virus2",
+    tooltipText: "Covid mundialmente",
+  },
+  {
+    id: 2,
+    path: "/casos-continente",
+    icon: "bi-globe-americas",
+    tooltipText: "Covid por continente",
+  },
+  {
+    id: 3,
+    path: "/casos-pais",
+    icon: "bi-flag-fill",
+    tooltipText: "Covid por pais",
+  },
+  {
+    id: 4,
+    path: "/vacunas",
+    icon: "bi-clipboard2-pulse-fill",
+    tooltipText: "Vacunas realizadas",
+  },
+]; 
 
 export const Layout = () => {
   return (
@@ -23,31 +51,49 @@ export const Layout = () => {
           />
 
           <nav className="d-flex flex-md-column align-items-center gap-4 ps-xl-2">
-            <NavLink className={({isActive}) => isActive ? 'active-link' : ''} to="/" title="Covid mundialmente">
-              <i className="bi bi-virus2 icon"></i>
-            </NavLink>
+            {links.map(({ id, path, icon, tooltipText }) => (
+              <OverlayTrigger
+                key={id}
+                placement="right"
+                overlay={
+                  <Tooltip className="fw-bold">{tooltipText}</Tooltip>
+                }
+              >
+                <NavLink
+                  className={({ isActive }) => (isActive ? "active-link" : "")}
+                  to={path}
+                >
+                  <i className={`bi ${icon} icon`}></i>
+                </NavLink>
+              </OverlayTrigger>
+            ))}
 
-            <NavLink
-              className={({isActive}) => isActive ? 'active-link' : ''}
+            {/* <NavLink
+              className={({ isActive }) => (isActive ? "active-link" : "")}
               to="/casos-continente"
-              title="Covid por continente"
             >
               <i className="bi bi-globe-americas icon"></i>
             </NavLink>
 
-            <NavLink className={({isActive}) => isActive ? 'active-link' : ''} to="/casos-pais" title="Covid por pais">
+            <NavLink
+              className={({ isActive }) => (isActive ? "active-link" : "")}
+              to="/casos-pais"
+            >
               <i className="bi bi-flag-fill icon"></i>
             </NavLink>
 
-            <NavLink className={({isActive}) => isActive ? 'active-link' : ''} to="/vacunas" title="Vacunas realizadas">
+            <NavLink
+              className={({ isActive }) => (isActive ? "active-link" : "")}
+              to="/vacunas"
+            >
               <i className="bi bi-clipboard2-pulse-fill icon"></i>
-            </NavLink>
+            </NavLink> */}
           </nav>
         </div>
       </header>
 
       <main className="d-flex flex-column align-items-center align-items-lg-stretch py-4 flex-grow-1 mb-6 mb-md-0">
-        <Outlet/>
+        <Outlet />
       </main>
     </div>
   );

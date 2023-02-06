@@ -2,12 +2,12 @@
   position: relative;
 }
 /* ********** Bootstrap Styles ********** */
+
 .nav-link.active,
 .nav-link:hover,
 .nav-link:focus{
   border-radius: 0;
   border: none;
-  outline: 0;
 }
 
 .nav-link.active{
@@ -120,6 +120,7 @@
 .top--1{
   top: 0;
 }
+
 
 .w-6{
   width: 7rem !important;
