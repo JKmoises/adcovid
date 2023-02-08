@@ -100,7 +100,7 @@ export const Globales = () => {
 
             <Line
               data={lineChartData(dataYesterday)}
-              options={lineChartOptions("Casos el día de ayer")}
+              options={lineChartOptions("Casos el día de ayer", theme)}
             />
           </CardWithHeader>
         </Col>
@@ -131,7 +131,7 @@ export const Globales = () => {
 
             <Line
               data={lineChartData(dataMonthAgo)}
-              options={lineChartOptions("Casos hace 1 mes")}
+              options={lineChartOptions("Casos hace 1 mes", theme)}
             />
           </CardWithHeader>
         </Col>
@@ -218,7 +218,7 @@ export const Globales = () => {
 
             <Bar
               data={barChartData([todayCases, todayDeaths, todayRecovered])}
-              options={barChartOptions()}
+              options={barChartOptions(theme)}
             />
           </NormalCard>
         </Col>
@@ -253,7 +253,7 @@ export const Globales = () => {
             <Tab
               eventKey="casos"
               title="casos"
-              tabClassName="text-gray-dark-color text-uppercase px-2"
+              tabClassName={`text-gray-dark-color text-uppercase px-2 ${theme}`}
               className="transition"
             >
               <CardHeaderContent
@@ -282,7 +282,7 @@ export const Globales = () => {
             <Tab
               eventKey="fallecidos"
               title="fallecidos"
-              tabClassName="text-gray-dark-color text-uppercase px-2"
+              tabClassName={`text-gray-dark-color text-uppercase px-2 ${theme}`}
               className="transition"
             >
               <CardHeaderContent
@@ -311,7 +311,7 @@ export const Globales = () => {
             <Tab
               eventKey="activos"
               title="activos"
-              tabClassName="text-gray-dark-color text-uppercase px-2"
+              tabClassName={`text-gray-dark-color text-uppercase px-2 ${theme}`}
               className="transition"
             >
               <CardHeaderContent
@@ -340,7 +340,7 @@ export const Globales = () => {
             <Tab
               eventKey="recuperados"
               title="recuperados"
-              tabClassName="text-gray-dark-color text-uppercase px-2"
+              tabClassName={`text-gray-dark-color text-uppercase px-2 ${theme}`}
               className="transition"
             >
               <CardHeaderContent

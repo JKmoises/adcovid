@@ -1,8 +1,13 @@
-export function lineChartOptions(text: string ) {
+export function lineChartOptions(text: string, theme: string = "light") {
   return {
     fill: true,
     responsive: true,
     scales: {
+      x: {
+        ticks: {
+          color: theme === "light" ? "#707B7C" : "#fff",
+        },
+      },
       y: {
         display: false,
       },
@@ -15,6 +20,7 @@ export function lineChartOptions(text: string ) {
         display: true,
         text,
         position: "bottom" as const,
+        color: theme === "light" ? "" : "#fff",
       },
     },
   };
@@ -22,7 +28,7 @@ export function lineChartOptions(text: string ) {
 
 export function lineChartData(
   data: number[],
-  labels: string[] = ["Casos", "Muertes", "Sanados"]
+  labels: string[] = ["Casos", "Muertes", "Sanados"],
 ) {
   return {
     labels,
@@ -52,11 +58,23 @@ export function barChartData(
   };
 }
 
-export function barChartOptions(){
+export function barChartOptions(theme: string = "light"){
   return {
     responsive: true,
     barThickness: 20,
     borderRadius: 8,
+    scales: {
+      x: {
+        ticks: {
+          color: theme === "light" ? "#707B7C" : "#fff",
+        },
+      },
+      y: {
+        ticks: {
+          color: theme === "light" ? "#707B7C" : "#fff",
+        },
+      },
+    },
     plugins: {
       legend: {
         display: false,

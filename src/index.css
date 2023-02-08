@@ -26,11 +26,16 @@ main{
 }
 
 .dark,
+.dark.nav-link.active,
 .text-gray-dark-color.dark,
 .progress-second-color.dark,
 .text-color.dark{
   background-color: var(--dark-mode-color);
   color: var(--bs-white);
+}
+
+.dark.nav-link.active{
+  border-bottom: var(--gray-light-color);
 }
 
 span.dark,
