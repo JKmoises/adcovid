@@ -25,6 +25,36 @@ main{
   z-index: 1;
 }
 
+.dark,
+.text-gray-dark-color.dark,
+.progress-second-color.dark,
+.text-color.dark{
+  background-color: var(--dark-mode-color);
+  color: var(--bs-white);
+}
+
+span.dark,
+.dark.text-first-color{
+  color: var(--gray-light-color);
+}
+
+
+
+.light{
+  background-color: var(--bs-white);
+}
+
+span.light{
+  color: var(--second-color);
+}
+
+.text-first-color.light{
+  color: var(--first-color);
+}
+
+
+
+
 
 
 

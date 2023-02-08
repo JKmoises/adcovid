@@ -1,6 +1,8 @@
 import React from 'react';
 import { Card, Tabs } from 'react-bootstrap';
 import { CardHeaderContent } from './CardHeaderContent';
+import { useContext } from 'react';
+import ThemeContext from '../context/ThemeContext';
 
 type AppProps = {
   cardTitle: string;
@@ -17,6 +19,8 @@ export const CardWithHeader = ({
   tabs,
   children,
 }: AppProps) => {
+  const { theme } = useContext(ThemeContext);
+
   return (
     <Card className="shadow border-0 p-0">
       <Card.Header className="position-relative bg-third-color border-0">
@@ -42,7 +46,7 @@ export const CardWithHeader = ({
         <Tabs
           defaultActiveKey="fallecidos"
           transition={true}
-          className="mb-3"
+          className={theme}
           justify
         >
           {children}

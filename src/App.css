@@ -22,7 +22,7 @@
 }
 
 .progress-second-color{
-  --bs-progress-bar-bg: var(--second-color) !important;
+  --bs-progress-bar-bg: var(--second-color);
 }
 
 /* ********** Circular Progress Bar Styles ********** */
@@ -102,19 +102,19 @@
 }
 
 .text-color{
-  color: var(--text-color) !important;
+  color: var(--text-color);
 }
 
 .text-first-color {
-  color: var(--first-color) !important;
+  color: var(--first-color);
 }
 
 .text-gray-dark-color{
-  color: var(--gray-dark-color) !important;
+  color: var(--gray-dark-color);
 }
 
 .text-second-color{
-  color: var(--second-color) !important;
+  color: var(--second-color);
 }
 
 .top--1{

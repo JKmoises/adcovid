@@ -18,6 +18,7 @@ import "./App.css";
 import "react-circular-progressbar/dist/styles.css";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { ThemeProvider } from "./context/ThemeProvider";
 import { Layout } from "./components/Layout";
 import { Continentes } from "./pages/Continentes";
 import { Globales, loader as globalesLoader } from "./pages/Globales";
@@ -64,6 +65,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <ThemeProvider>
+      <RouterProvider router={router} />
+    </ThemeProvider>
   </React.StrictMode>
 );

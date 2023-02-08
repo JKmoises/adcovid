@@ -1,6 +1,7 @@
 import { ProgressBar } from "react-bootstrap";
 
 
+
 type AppProps = {
   data: number;
   percentage: number;
@@ -8,7 +9,6 @@ type AppProps = {
 };
 
 export const CardIcon = ({ data,percentage,icon }: AppProps) => {
-
   return (
     <section
       className="position-relative d-flex flex-column align-items-center justify-content-center gap-2

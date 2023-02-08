@@ -1,4 +1,4 @@
-export function lineChartOptions(text: string) {
+export function lineChartOptions(text: string ) {
   return {
     fill: true,
     responsive: true,

@@ -13,21 +13,9 @@ import { CircularProgressbar } from 'react-circular-progressbar';
 
 import covidIcon from "../assets/covid-virus.webp";
 import { CardHeaderContent } from '../components/CardHeaderContent';
- 
+import { useContext } from 'react';
+import ThemeContext from '../context/ThemeContext';
 
-//* Estilos de progressBar 
-const progressBarStyles = {
-  path: {
-    stroke: "var(--second-color)",
-    transition: "stroke-dashoffset 0.5s ease",
-  },
-  text: {
-    fill: "var(--second-color)",
-  },
-  trail: {
-    stroke: "var(--gray-light-color)",
-  },
-};
 
 
 export async function loader() {
@@ -42,7 +30,6 @@ export async function loader() {
     covidMonthAgo,
     covidChile,
   ]);
-  
   return dataCovid;
 }
 
@@ -65,6 +52,22 @@ export const Globales = () => {
     covidChile,
   } = useGlobalCovid();
 
+  const { theme } = useContext(ThemeContext);
+
+  //* Estilos de progressBar
+  const progressBarStyles = {
+    path: {
+      stroke: "var(--second-color)",
+      transition: "stroke-dashoffset 0.5s ease",
+    },
+    text: {
+      fill: theme === "light" ? "var(--second-color)" : "var(--gray-light-color)",
+    },
+    trail: {
+      stroke: "var(--gray-light-color)",
+    },
+  };
+
   const { cases, deaths, todayCases, todayDeaths, todayRecovered } = globals;
   const { flag } = covidChile.countryInfo;
 
@@ -77,20 +80,22 @@ export const Globales = () => {
             footerText={
               <>
                 A comparación de ayer crecieron en un{" "}
-                <span className="text-second-color fw-bolder">
+                <span className={`fw-bolder ${theme}`}>
                   {increaseCasesYesterday}%
                 </span>
               </>
             }
           >
             <Card.Text className="d-flex flex-column align-items-center m-0 pt-2">
-              <span className="display-5 text-first-color">
+              <span className={`display-5 text-first-color ${theme}`}>
                 +{increaseCasesYesterday}%
               </span>
             </Card.Text>
 
             <Card.Text className="text-gray-dark-color fw-bold">
-              <small>(Aumento a comparación del día de ayer)</small>
+              <small className={theme}>
+                (Aumento a comparación del día de ayer)
+              </small>
             </Card.Text>
 
             <Line
@@ -106,20 +111,22 @@ export const Globales = () => {
             footerText={
               <>
                 A comparación de hace 1 mes crecieron en un{" "}
-                <span className="text-second-color fw-bolder">
+                <span className={`fw-bolder ${theme}`}>
                   {increaseCasesMonthAgo}%
                 </span>
               </>
             }
           >
             <Card.Text className="d-flex flex-column align-items-center m-0 pt-2">
-              <span className="display-5 text-first-color">
+              <span className={`display-5 text-first-color ${theme}`}>
                 +{increaseCasesMonthAgo}%
               </span>
             </Card.Text>
 
             <Card.Text className="text-gray-dark-color fw-bold">
-              <small>(Aumento a comparación de hace 1 mes)</small>
+              <small className={theme}>
+                (Aumento a comparación de hace 1 mes)
+              </small>
             </Card.Text>
 
             <Line
@@ -143,11 +150,13 @@ export const Globales = () => {
           <NormalCard data={cases}>
             <Stack className="gap-3 pb-3">
               <Stack className="flex-row align-items-center gap-3">
-                <div className="fs-2 text-color">
+                <div className={`fs-2 text-color ${theme}`}>
                   <i className="bi bi-activity"></i>
                 </div>
 
-                <Card.Text className="w-6 m-0 fs-5 text-gray-dark-color">
+                <Card.Text
+                  className={`w-6 m-0 fs-5 text-gray-dark-color ${theme}`}
+                >
                   Activos
                 </Card.Text>
 
@@ -157,17 +166,19 @@ export const Globales = () => {
                   now={Number(activePercentage)}
                 />
 
-                <Card.Text className="fw-bold text-first-color">
+                <Card.Text className={`fw-bold text-first-color ${theme}`}>
                   {activePercentage}%
                 </Card.Text>
               </Stack>
 
               <Stack className="flex-row align-items-center justify-content-between gap-3">
-                <div className="fs-2 text-color">
+                <div className={`fs-2 text-color ${theme}`}>
                   <i className="bi bi-exclamation-square"></i>
                 </div>
 
-                <Card.Text className="w-6 m-0 fs-5 text-gray-dark-color">
+                <Card.Text
+                  className={`w-6 m-0 fs-5 text-gray-dark-color ${theme}`}
+                >
                   Críticos
                 </Card.Text>
 
@@ -177,17 +188,19 @@ export const Globales = () => {
                   now={Number(criticalPercentage)}
                 />
 
-                <Card.Text className="fw-bold text-first-color">
+                <Card.Text className={`fw-bold text-first-color ${theme}`}>
                   {criticalPercentage}%
                 </Card.Text>
               </Stack>
 
               <Stack className="flex-row align-items-center justify-content-between gap-3">
-                <div className="fs-2 text-color">
+                <div className={`fs-2 text-color ${theme}`}>
                   <i className="bi bi-bandaid"></i>
                 </div>
 
-                <Card.Text className="w-6 m-0 fs-5 text-gray-dark-color">
+                <Card.Text
+                  className={`w-6 m-0 fs-5 text-gray-dark-color ${theme}`}
+                >
                   Sanados
                 </Card.Text>
 
@@ -197,7 +210,7 @@ export const Globales = () => {
                   now={Number(recoveredPercentage)}
                 />
 
-                <Card.Text className="fw-bold text-first-color">
+                <Card.Text className={`fw-bold text-first-color ${theme}`}>
                   {recoveredPercentage}%
                 </Card.Text>
               </Stack>
@@ -216,11 +229,9 @@ export const Globales = () => {
             footerText={
               <>
                 De{" "}
-                <span className="text-second-color fw-bolder">
-                  {TOTAL_COUNTRIES}
-                </span>{" "}
+                <span className={`fw-bolder ${theme}`}>{TOTAL_COUNTRIES}</span>{" "}
                 países el{" "}
-                <span className="text-second-color fw-bolder">
+                <span className={`fw-bolder ${theme}`}>
                   {percentageCountriesAffected}%
                 </span>{" "}
                 fue afectado por covid
@@ -248,11 +259,11 @@ export const Globales = () => {
               <CardHeaderContent
                 footerText={
                   <>
-                    <span className="text-second-color fw-bolder">
+                    <span className={`fw-bolder ${theme}`}>
                       {covidChile.cases.toLocaleString()}
                     </span>{" "}
                     casos en chile son el{" "}
-                    <span className="text-second-color fw-bolder">
+                    <span className={`fw-bolder ${theme}`}>
                       {percentageCasesChile}%
                     </span>{" "}
                     en el mundo
@@ -277,11 +288,11 @@ export const Globales = () => {
               <CardHeaderContent
                 footerText={
                   <>
-                    <span className="text-second-color fw-bolder">
+                    <span className={`fw-bolder ${theme}`}>
                       {covidChile.deaths.toLocaleString()}
                     </span>{" "}
                     fallecidos en chile son el{" "}
-                    <span className="text-second-color fw-bolder">
+                    <span className={`fw-bolder ${theme}`}>
                       {percentageDeathsChile}%
                     </span>{" "}
                     en el mundo
@@ -306,11 +317,11 @@ export const Globales = () => {
               <CardHeaderContent
                 footerText={
                   <>
-                    <span className="text-second-color fw-bolder">
+                    <span className={`fw-bolder ${theme}`}>
                       {covidChile.active.toLocaleString()}
                     </span>{" "}
                     casos activos en chile son el{" "}
-                    <span className="text-second-color fw-bolder">
+                    <span className={`fw-bolder ${theme}`}>
                       {percentageActiveChile}%
                     </span>{" "}
                     en el mundo
@@ -335,11 +346,11 @@ export const Globales = () => {
               <CardHeaderContent
                 footerText={
                   <>
-                    <span className="text-second-color fw-bolder">
+                    <span className={`fw-bolder ${theme}`}>
                       {covidChile.recovered.toLocaleString()}
                     </span>{" "}
                     de recuperados en chile son el{" "}
-                    <span className="text-second-color fw-bolder">
+                    <span className={`fw-bolder ${theme}`}>
                       {percentageRecoveredChile}%
                     </span>{" "}
                     en el mundo

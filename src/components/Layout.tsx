@@ -2,6 +2,9 @@
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import { NavLink, Outlet } from "react-router-dom";
 import logo from "../assets/logo.webp";
+import { Switch } from "./Switch";
+import { useContext } from 'react';
+import ThemeContext from '../context/ThemeContext';
 
 const links = [
   {
@@ -31,10 +34,14 @@ const links = [
 ]; 
 
 export const Layout = () => {
+  const { theme } = useContext(ThemeContext);
+
   return (
-    <div className="d-md-flex min-vh-100">
+    <div className={`d-md-flex min-vh-100 ${theme}`}>
       <header className="nav-responsive w-10 bg-first-color pe-3 pe-md-0">
-        <div className="curve d-none d-xl-block position-absolute w-11 min-vh-100 bg-white left-7"></div>
+        <div
+          className={`curve d-none d-xl-block position-absolute w-11 min-vh-100 left-7 ${theme}`}
+        ></div>
 
         <div
           className="
@@ -55,9 +62,7 @@ export const Layout = () => {
               <OverlayTrigger
                 key={id}
                 placement="right"
-                overlay={
-                  <Tooltip className="fw-bold">{tooltipText}</Tooltip>
-                }
+                overlay={<Tooltip className="fw-bold">{tooltipText}</Tooltip>}
               >
                 <NavLink
                   className={({ isActive }) => (isActive ? "active-link" : "")}
@@ -67,28 +72,9 @@ export const Layout = () => {
                 </NavLink>
               </OverlayTrigger>
             ))}
-
-            {/* <NavLink
-              className={({ isActive }) => (isActive ? "active-link" : "")}
-              to="/casos-continente"
-            >
-              <i className="bi bi-globe-americas icon"></i>
-            </NavLink>
-
-            <NavLink
-              className={({ isActive }) => (isActive ? "active-link" : "")}
-              to="/casos-pais"
-            >
-              <i className="bi bi-flag-fill icon"></i>
-            </NavLink>
-
-            <NavLink
-              className={({ isActive }) => (isActive ? "active-link" : "")}
-              to="/vacunas"
-            >
-              <i className="bi bi-clipboard2-pulse-fill icon"></i>
-            </NavLink> */}
           </nav>
+
+          <Switch />
         </div>
       </header>
 
