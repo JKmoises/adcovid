@@ -6,11 +6,12 @@
   --second-alpha-color: #73C6B6;
   --third-color: #239B56;
   --third-alpha-color: #82E0AA;
-  --dark-mode-color: #34495E;
   --text-color: #17202A;
   --gray-dark-color: #424949;
   --gray-color: #707B7C;
   --gray-light-color: #CCD1D1;
+  --dark-mode: #34495E;
+  --black-dark-mode: #273746;
 
 }
 
@@ -20,27 +21,41 @@ body {
   overflow-x: hidden;
 }
 
-header,
+aside,
 main{
   z-index: 1;
 }
+
+
+.black-dark,
+.bg-first-color.black-dark,
+.bg-third-color.black-dark,
+.bg-gradient-green.black-dark{  
+  background-color: var(--black-dark-mode);
+  background-image: initial;
+}
+
+.active-link.black-dark{
+  background-color: var(--dark-mode);
+}
+
 
 .dark,
 .dark.nav-link.active,
 .text-gray-dark-color.dark,
 .progress-second-color.dark,
 .text-color.dark{
-  background-color: var(--dark-mode-color);
+  background-color: var(--dark-mode);
   color: var(--bs-white);
-}
-
-.dark.nav-link.active{
-  border-bottom: var(--gray-light-color);
 }
 
 span.dark,
 .dark.text-first-color{
   color: var(--gray-light-color);
+}
+
+.dark.nav-link.active{
+  border-bottom: var(--gray-light-color);
 }
 
 

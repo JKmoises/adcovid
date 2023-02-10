@@ -45,14 +45,19 @@ export function lineChartData(
 
 export function barChartData(
   data: number[],
-  labels: string[] = ["Casos hoy", "Muertes hoy", "Sanados hoy"]
+  theme: string = "light",
+  labels: string[] = ["Casos hoy", "Muertes hoy", "Sanados hoy"],
 ) {
   return {
     labels,
     datasets: [
       {
         data,
-        backgroundColor: ["#145A32", "#0E6655", "#239B56"],
+        backgroundColor: [
+          theme === "dark" ? "#239B56" : "#145A32",
+          theme === "dark" ? "#0E6655" : "#145A32",
+          "#239B56",
+        ],
       },
     ],
   };

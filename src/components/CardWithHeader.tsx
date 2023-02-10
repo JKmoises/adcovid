@@ -23,7 +23,7 @@ export const CardWithHeader = ({
 
   return (
     <Card className="shadow border-0 p-0">
-      <Card.Header className="position-relative bg-third-color border-0">
+      <Card.Header className={`position-relative bg-third-color border-0 black-${theme}`}>
         {icon && (
           <img
             className="position-absolute start-0 top-0 img-fluid icon-covid border border-light shadow-lg"

@@ -141,6 +141,7 @@ export const Globales = () => {
             data={deaths}
             percentage={percentageDeaths}
             icon={covidIcon}
+            title="Fallecidos de covid-19"
           />
         </Col>
       </Row>
@@ -217,7 +218,10 @@ export const Globales = () => {
             </Stack>
 
             <Bar
-              data={barChartData([todayCases, todayDeaths, todayRecovered])}
+              data={barChartData(
+                [todayCases, todayDeaths, todayRecovered],
+                theme
+              )}
               options={barChartOptions(theme)}
             />
           </NormalCard>
@@ -254,7 +258,6 @@ export const Globales = () => {
               eventKey="casos"
               title="casos"
               tabClassName={`text-gray-dark-color text-uppercase px-2 ${theme}`}
-              className="transition"
             >
               <CardHeaderContent
                 footerText={
@@ -283,7 +286,6 @@ export const Globales = () => {
               eventKey="fallecidos"
               title="fallecidos"
               tabClassName={`text-gray-dark-color text-uppercase px-2 ${theme}`}
-              className="transition"
             >
               <CardHeaderContent
                 footerText={
@@ -312,7 +314,6 @@ export const Globales = () => {
               eventKey="activos"
               title="activos"
               tabClassName={`text-gray-dark-color text-uppercase px-2 ${theme}`}
-              className="transition"
             >
               <CardHeaderContent
                 footerText={
@@ -341,7 +342,6 @@ export const Globales = () => {
               eventKey="recuperados"
               title="recuperados"
               tabClassName={`text-gray-dark-color text-uppercase px-2 ${theme}`}
-              className="transition"
             >
               <CardHeaderContent
                 footerText={

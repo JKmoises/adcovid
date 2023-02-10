@@ -38,7 +38,9 @@ export const Layout = () => {
 
   return (
     <div className={`d-md-flex min-vh-100 ${theme}`}>
-      <header className="nav-responsive w-10 bg-first-color pe-3 pe-md-0">
+      <aside
+        className={`nav-responsive w-10 bg-first-color pe-3 pe-md-0 black-${theme}`}
+      >
         <div
           className={`curve d-none d-xl-block position-absolute w-11 min-vh-100 left-7 ${theme}`}
         ></div>
@@ -65,7 +67,9 @@ export const Layout = () => {
                 overlay={<Tooltip className="fw-bold">{tooltipText}</Tooltip>}
               >
                 <NavLink
-                  className={({ isActive }) => (isActive ? "active-link" : "")}
+                  className={({ isActive }) =>
+                    isActive ? `active-link black-${theme}` : ""
+                  }
                   to={path}
                 >
                   <i className={`bi ${icon} icon`}></i>
@@ -76,7 +80,7 @@ export const Layout = () => {
 
           <Switch />
         </div>
-      </header>
+      </aside>
 
       <main className="d-flex flex-column align-items-center align-items-lg-stretch py-4 flex-grow-1 mb-6 mb-md-0">
         <Outlet />

@@ -8,11 +8,12 @@
 .nav-link:focus{
   border-radius: 0;
   border: none;
+  color: var(--gray-color);
 }
 
 .nav-link.active{
   --bs-nav-tabs-link-active-border-color: var(--first-color);
-  border-bottom: medium solid;
+  border-bottom: medium solid var(--first-color);
 }
 
 .progress{
@@ -42,19 +43,19 @@
 }
 
 .bg-first-color{
-  background-color: var(--first-color) !important;
+  background-color: var(--first-color);
 }
 
 .bg-gradient-green{
-  background: linear-gradient(180deg, #145A32 0%, #0E6655 100%);
+  background-image: linear-gradient(180deg, #145A32 0%, #0E6655 100%);
 }
 
 .bg-second-color{
-  background-color: var(--second-color) !important;
+  background-color: var(--second-color);
 }
 
 .bg-third-color{
-  background-color: var(--third-color) !important;
+  background-color: var(--third-color);
 }
 
 .br-card-icon{
@@ -74,9 +75,6 @@
 }
 
 
-.icon:hover{
-  color: var(--bs-white);
-}
 
 .icon:active {
   color: var(--gray-light-color);
